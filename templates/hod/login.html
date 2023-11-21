@@ -1,0 +1,44 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+</head>
+<body>
+    <header>
+        <ul class="navbar">
+            <strong><a href="#" class="active">Home</a>
+            </strong>
+        </ul>
+    </header>
+     <section>
+        <div class="imgBx">
+            <img src="{% static 'college.jpg'%}">
+        </div>
+        <div class="contentBx">
+            <div class="formBx">
+                <h2>HOD Login</h2>
+                <div><span></span></div>
+                <form>
+                {% csrf_token %}
+                    <div class="inputBx">
+                        <span>Username</span>
+                        <input type="text" name="username">
+                    </div>
+                    <div class="inputBx">
+                        <span>Password</span>
+                        <input type="password" name="password">
+                    </div>
+
+                    <div class="inputBx">
+                        <input type="submit" value="Login" name="">
+                    </div>
+                </form>
+            </div>
+        </div>
+     </section>
+</body>
+</html>
