@@ -21,6 +21,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include('staff.urls')),
+    path("hod/",include('hod.urls'))
     
 ]
 
