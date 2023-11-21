@@ -22,7 +22,14 @@
             <div class="formBx">
                 <h2>STAFF Login</h2>
                 <div><span></span></div>
-                <form>
+                <form method='post' action=''>
+        {% if messages %}
+            <div class="messages">
+            {% for message in messages %}
+                <p style="color: red;" class="error">{{ message }}</p>
+            {% endfor %}
+            </div>
+        {% endif %}
                 {% csrf_token %}
                     <div class="inputBx">
                         <span>Username</span>
@@ -34,7 +41,9 @@
                     </div>
 
                     <div class="inputBx">
+                        
                         <input type="submit" value="Login" name="">
+                        
                     </div>
                 </form>
             </div>

@@ -1,0 +1,178 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            text-align: center;
+            background-color: #3370e0;
+            color: #fff;
+            padding: 10px;
+            
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        .profile-info {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px;
+        }
+
+        .profile-info div {
+            text-align: center;
+        }
+
+        .profile-info label {
+            font-weight: bold;
+            color: #666;
+        }
+
+        .profile-info input {
+            width: 160px;
+            font-size: 16px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .profile-info div {
+            text-align: left; 
+            display: block;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #ffffff;
+            color: #666;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .info-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>EMPLOYEE ID: {{detail.employee_id}}</h1>
+        <a href=>Logout</a>
+        <a href=>New application</a>
+        <a href=>View Applications</a>
+        
+
+
+    </header>
+
+
+
+
+
+
+
+
+    
+    
+        <div class="profile-info" style="text-align: left; display: block;">
+            STAFF NAME:&nbsp;&nbsp;<strong>TEST</strong>
+        </div >
+  
+
+        <div class="profile-info" style="text-align: left; display: block;">
+        <div style="text-align: left; display: block;">
+            DEPARTMENT:&nbsp;&nbsp;<strong> cse </strong>
+            
+        </div>
+    </div>
+    <div class="profile-info" style="text-align: left; display: block;">
+        <div style="text-align: left; display: block;">
+            DESIGNATION:<strong> hod </strong>
+        </div>
+
+
+        
+    </div>
+
+    <br><br>
+    <table>
+    
+        <tr>
+            <th>Leave Nature</th>
+            <th>Balance Leave</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+        <tr>
+            <td>CL1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>CL2</td>
+            <td>0</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>ML</td>
+            <td>0</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>VL</td>
+            <td>0</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>COMP_OFF</td>
+            <td>0</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>DL</td>
+            <td>0</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>LoP</td>
+            <td>-</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+  
+    </table><br>
+    <div class="info-text">
+        &nbsp;&nbsp;CL1 & CL2 = Casual Leave, MP = Medical Leave, VL = Vacation Leave, DL = Duty Leave
+    </div>
+</body>
+</html>
