@@ -110,7 +110,21 @@
         </div>
     </header>
 
-
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div class="alert alert-success alert-dismissible fade show mx-auto text-center" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% elif message.tags == 'warning' %}
+                <div class="alert alert-warning alert-dismissible fade show mx-auto text-center" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
     {% if detail %}
         <div class="profile-info" style="text-align: left; display: block;">
@@ -193,7 +207,7 @@
     </table><br>
     <div style="text-align: right;">
         <a href="{% url 'new_leave_application' %}">New application</a>
-        <a href=>View Applications</a>
+        <a href="{% url 'show_leave_application' %}">View Applications</a>
     </div>
     <div class="info-text">
         &nbsp;&nbsp;CL1 & CL2 = Casual Leave, MP = Medical Leave, VL = Vacation Leave, DL = Duty Leave

@@ -46,7 +46,6 @@ def profile(request):
 
     return render(request, 'staff/profile.html', {'detail': detail})
 
-
 @login_required
 def signout(request):
     logout(request)
@@ -55,7 +54,7 @@ def signout(request):
 @login_required
 def new_leave_application(request):
     username = request.session.get('username', "NONE")
-    do_exist = Leave_Application.objects.filter(name = username)
+    do_exist = Leave_Application.objects.filter(employee_id = username)
 
     if do_exist.exists():
         messages.warning(request,"You have already applied for a leave.")
@@ -109,7 +108,15 @@ def new_leave_application(request):
 
 @login_required
 def show_leave_application(request):
-    pass
+    username = request.session.get('username', "NONE")
+    print(username)
+
+    status_of_approved_applications = Status_Leave_Application.objects.filter(employee_id = username).order_by('-leave_from')
+    
+    pending_applications = Leave_Application.objects.filter(employee_id = username)
+    
+    return render(request, 'staff/show_leave_applications.html',{'status_of_approved_applications': status_of_approved_applications, 'pending_applications': pending_applications})
+    
 def signup(request):
     if request.method == "POST":
         employeeId = request.POST['employeeId']

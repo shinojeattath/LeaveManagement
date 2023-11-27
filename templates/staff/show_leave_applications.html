@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leave Requests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgb(46, 197, 243);
+            color: #ffffff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Leave Requests</h1>
+    </header>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Leave Type</th>
+                    <th>Number of Days</th>
+                    <th>Start Date</th>
+                    <th>Time of Request</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+    {% if pending_applications %}
+        {% for i in pending_applications %}
+            <tbody>
+                <tr>
+                    <td>{{i.nature_of_leave}}</td>
+                    <td>{{i.no_of_days}}</td>
+                    <td>{{i.leave_from}}</td>
+                    <td>{{i.time_of_request}}</td>
+                    
+                    <td>{{i.status_of_request}}</td>
+                </tr>
+            </tbody>
+            
+        {% endfor %}
+    {% endif %}
+    
+    {% if approved_applications %}
+        {% for i in approved_applications %}
+            <tbody>
+                <tr>
+                    <td>{{i.nature_of_leave}}</td>
+                    <td>{{i.no_of_days}}</td>
+                    <td>{{i.leave_from}}</td>
+                    <td>{{i.time_of_request}}</td>
+                    {% if i.status_of_request == 'APPROVED' %}
+                    <td style="color: green;">{{ i.status_of_request }}</td>
+                    {% else %}
+                    <td style="color: red;">{{ i.status_of_request }}</td>
+                    {% endif %}
+                </tr>
+            </tbody>
+        {% endfor %}
+    {% endif %}
+
+
+        </table>
+    </div>
+</body>
+</html>
