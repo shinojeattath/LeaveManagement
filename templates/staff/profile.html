@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Profile</title>
+    <title>{{detail.employee_id}}-Profile</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,12 +16,34 @@
             text-align: center;
             background-color: #3370e0;
             color: #fff;
-            padding: 10px;
+            padding: 5px;
             
         }
 
         header h1 {
             font-size: 24px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            padding: 8px 20px;
+            background-color: rgb(57, 63, 178);
+            border-radius: 15px;
+            transition: 0.3s ease;
+        }
+
+
+        .header-logout {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            
+        }
+
+        a:hover {
+            background-color: rgb(127, 129, 255);
+            color: #ffffff;
         }
 
         .profile-info {
@@ -38,6 +60,8 @@
             font-weight: bold;
             color: #666;
         }
+
+
 
         .profile-info input {
             width: 160px;
@@ -81,37 +105,33 @@
 <body>
     <header>
         <h1>EMPLOYEE ID: {{detail.employee_id}}</h1>
-        <a href=>Logout</a>
-        <a href=>New application</a>
-        <a href=>View Applications</a>
-        
-
-
+        <div class="header-logout">
+            <a href="{% url 'signout' %}">Logout</a>
+        </div>
     </header>
 
 
 
-
-
-
-
-
-    
-    
+    {% if detail %}
         <div class="profile-info" style="text-align: left; display: block;">
-            STAFF NAME:&nbsp;&nbsp;<strong>TEST</strong>
+            STAFF NAME&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<strong>{{detail.name}}</strong>
         </div >
+    {% else %}
+        <div class="profile-info" style="text-align: left; display: block;">
+            No details found for the given staff name.
+        </div>
+    {% endif %}
   
 
         <div class="profile-info" style="text-align: left; display: block;">
         <div style="text-align: left; display: block;">
-            DEPARTMENT:&nbsp;&nbsp;<strong> cse </strong>
+            DEPARTMENT&nbsp;:&nbsp;&nbsp;<strong> {{detail.department}} </strong>
             
         </div>
     </div>
     <div class="profile-info" style="text-align: left; display: block;">
         <div style="text-align: left; display: block;">
-            DESIGNATION:<strong> hod </strong>
+            DESIGNATION&nbsp;:&nbsp;&nbsp;<strong> {{detail.designation}} </strong>
         </div>
 
 
@@ -129,37 +149,37 @@
         </tr>
         <tr>
             <td>CL1</td>
-            <td>0</td>
+            <td>{{detail.cl1_bal}}</td>
             <td>0</td>
             <td>0</td>
         </tr>
         <tr>
             <td>CL2</td>
-            <td>0</td> <!-- Increased width -->
+            <td>{{detail.cl2_bal}}</td> <!-- Increased width -->
             <td>0</td>
             <td>0</td>
         </tr>
         <tr>
             <td>ML</td>
-            <td>0</td> <!-- Increased width -->
+            <td>{{detail.ML_bal}}</td> <!-- Increased width -->
             <td>0</td>
             <td>0</td>
         </tr>
         <tr>
             <td>VL</td>
-            <td>0</td> <!-- Increased width -->
+            <td>{{detail.VL_bal}}</td> <!-- Increased width -->
             <td>0</td>
             <td>0</td>
         </tr>
         <tr>
             <td>COMP_OFF</td>
-            <td>0</td> <!-- Increased width -->
+            <td>{{detail.comp_off}}</td> <!-- Increased width -->
             <td>0</td>
             <td>0</td>
         </tr>
         <tr>
             <td>DL</td>
-            <td>0</td> <!-- Increased width -->
+            <td>{{detail.DL_bal}}</td> <!-- Increased width -->
             <td>0</td>
             <td>0</td>
         </tr>
@@ -171,6 +191,10 @@
         </tr>
   
     </table><br>
+    <div style="text-align: right;">
+        <a href=>New application</a>
+        <a href=>View Applications</a>
+    </div>
     <div class="info-text">
         &nbsp;&nbsp;CL1 & CL2 = Casual Leave, MP = Medical Leave, VL = Vacation Leave, DL = Duty Leave
     </div>

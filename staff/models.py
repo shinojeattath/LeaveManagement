@@ -1,19 +1,21 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
+
 class  Staff_Details(models.Model):
 
     employee_id = models.CharField( max_length=15, primary_key=True)
     name = models.CharField(max_length=20)
+    email = models.EmailField(unique=True)
     department = models.CharField(max_length=5)
     designation = models.CharField(max_length=20, null=True) 
-    cl1_bal = models.IntegerField(null=True)
-    cl2_bal = models.IntegerField(null=True)
-    ML_bal = models.IntegerField(null=True)
-    VL_bal  = models.IntegerField(null = True)
-    DL_bal = models.IntegerField(null=True)
-    LoP = models.IntegerField(null=True)
-    comp_off = models.IntegerField(null = True)
+    cl1_bal = models.PositiveIntegerField(null=True)
+    cl2_bal = models.PositiveIntegerField(null=True)
+    ML_bal = models.PositiveIntegerField(null=True)
+    VL_bal  = models.PositiveIntegerField(null = True)
+    DL_bal = models.PositiveIntegerField(null=True)
+    LoP = models.PositiveIntegerField(null=True)
+    comp_off = models.PositiveBigIntegerField(null = True)
 
 
 class Leave_Application(models.Model):
