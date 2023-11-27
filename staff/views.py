@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.utils import timezone
-from .models import Staff_Details
+from .models import Staff_Details, Leave_Application, Status_Leave_Application
 
 # Create your views here.
 def homepage(request):
@@ -53,8 +53,59 @@ def signout(request):
     return redirect('user_login')
 
 @login_required
-def leave_application(request):
-    pass
+def new_leave_application(request):
+    username = request.session.get('username', "NONE")
+    do_exist = Leave_Application.objects.filter(name = username)
+
+    if do_exist.exists():
+        messages.warning(request,"You have already applied for a leave.")
+        return redirect('profile')
+        
+    else:
+
+        details = Staff_Details.objects.filter(employee_id=username)
+        if details.exists():
+            detail = details[0] 
+        else:
+        # Handle the case where no matching records are found
+            detail = None
+        print(detail.name)
+        if request.method == "POST":
+            staff_name = request.POST['staffName']
+            department = request.POST['department']
+            nature_of_leave = request.POST['natureOfLeave']
+            leave_days = request.POST['leaveDays']
+            leave_period = request.POST['leavePeriod']
+            reason_for_leave = request.POST['reasonForLeave']
+            class_semester = request.POST['classSemester']
+            hour = request.POST['hour']
+            subject = request.POST['subject']
+            assigned_teacher = request.POST['assignedTeacher']
+            linways_assigned = request.POST['linwaysAssigned']
+
+            time_of_request = timezone.now()
+            emp_id = Staff_Details.objects.get(employee_id = username)
+
+
+            leave_application = Leave_Application(
+                employee_id = emp_id,
+                name=staff_name,
+                department=department,
+                nature_of_leave=nature_of_leave,
+                no_of_days=leave_days,
+                leave_from=leave_period,
+                reason=reason_for_leave,
+                alt_class_sem=class_semester,
+                alt_hour=hour,
+                alt_subject=subject,
+                alt_assigned_teacher=assigned_teacher,
+                alt_linways_assigned=linways_assigned,
+                time_of_request = time_of_request
+            )
+            leave_application.save()
+            messages.success(request, "Your Application submitted successfully")
+            return redirect('profile')
+    return render(request, 'staff/new_leave_application.html',{'detail': detail})
 
 @login_required
 def show_leave_application(request):

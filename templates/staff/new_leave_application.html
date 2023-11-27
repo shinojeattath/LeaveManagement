@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>New Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="leave_application/style.css"> <!-- Use 'stylesheet' instead of 'spreadsheet' -->
+    <title>Leave Application Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #f1f6fa;
+            color: #fff;
+            padding:10px;
+            padding-left: 10px; /* Use flexbox to arrange elements in the header */
+            justify-content: space-between;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 20px auto; /* Center the container horizontally */
+            padding: 20px;
+            max-width: 600px; /* Limit the container width for better readability */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight:normal;
+            color: rgb(171, 171, 171);
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: none;
+        }
+
+        select {
+            height: 40px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+        h1 {
+            text-align: center;
+            color: rgb(171, 171, 171);
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        h2 {
+            text-align: center; /* Center-align the "ALTERNATIVE ARRANGEMENTS" heading */
+            color:rgb(171, 171, 171);
+        }
+
+        button {
+            background-color: #3cafe9;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto; /* Center-align the button within its container */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="#">GO BACK</a>
+            <a href="#">LOGOUT</a>
+        </div>
+    </div> 
+    <div class="container">
+        <h1>LEAVE APPLICATION FORM </h1>
+        <form action="" method = 'post'>
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="staffName">Staff Name</label>
+                <input type="text" id="staffName" name="staffName" value="{{detail.name}}" readonly >
+            </div>
+            <div class="form-group">
+                <label for="department">Department</label>
+                <input type="text" id="department" name="department" value="{{ detail.department }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="natureOfLeave">Nature of Leave </label>
+                <select id="natureOfLeave" name="natureOfLeave" required>
+                    <option value="CL1">CL1</option>
+                    <option value="CL2">CL2</option>
+                    <option value="ML">ML</option>
+                    <option value="VL">VL</option>
+                    <option value="COMP_OFF">COMP_OFF</option>
+                    <option value="DL">DL</option>
+                    <option value="LoP">LoP</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="leaveDays">Number of Days of Leave</label>
+                <input type="text" id="leaveDays" name="leaveDays" required>
+            </div>
+            <div class="form-group">
+                <label for="leavePeriod">Period of Leave From</label>
+                <input type="date" id="leavePeriod" name="leavePeriod" required>
+            </div>
+            <div class="form-group">
+                <label for="reasonForLeave">Reason for Leave</label>
+                <textarea id="reasonForLeave" name="reasonForLeave" required></textarea>
+            </div><br>
+            <h2>ALTERNATIVE ARRANGEMENTS</h2><br>
+            <div class="form-group">
+                <label for="classSemester">Class & Semester</label>
+                <input type="text" id="classSemester" name="classSemester" required>
+            </div>
+            <div class="form-group">
+                <label for="hour">Hour</label>
+                <input type="text" id="hour" name="hour" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="assignedTeacher">Assigned Teacher</label>
+                <input type="text" id="assignedTeacher" name="assignedTeacher" required>
+            </div>
+            <div class="form-group">
+                <label for="linwaysAssigned">Linways Assigned</label>
+                <select id="linwaysAssigned" name="linwaysAssigned" required>
+                    <option value=""></option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select><br><br><br>
+            </div><button type="submit" onclick="alertbutton()">SUBMIT</button>
+
+        </form>
+    </div>
+
+
+
+
+
+
+</body>
+</html>
