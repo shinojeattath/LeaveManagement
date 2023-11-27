@@ -124,6 +124,7 @@ section .contentBx .formBx .inputBx input
     color: #000000;
     background: transparent;
     border-radius: 30px;
+    transition: 0.3s ease;
 }
 section .contentBx .formBx .inputBx input[type="submit"]
 {
@@ -133,6 +134,7 @@ section .contentBx .formBx .inputBx input[type="submit"]
     border: none;
     font-weight: 800;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 section .contentBx .formBx .inputBx input[type="submit"]:hover
 {
