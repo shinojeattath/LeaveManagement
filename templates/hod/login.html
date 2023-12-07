@@ -22,15 +22,23 @@
             <div class="formBx">
                 <h2>HOD Login</h2>
                 <div><span></span></div>
-                <form>
-                {% csrf_token %}
+                <form method = 'post'>
+                {% if messages %}
+                    <div class="messages">
+                    {% for message in messages %}
+                        <p style="color: red; text-align: center;" class="error">{{ message }}</p>
+                    {% endfor %}
+                    </div>
+                {% endif %} 
+
+                    {% csrf_token %}
                     <div class="inputBx">
                         <span>Username</span>
-                        <input type="text" name="username">
+                        <input type="text" name="username" required>
                     </div>
                     <div class="inputBx">
                         <span>Password</span>
-                        <input type="password" name="password">
+                        <input type="password" name="password" required>
                     </div>
 
                     <div class="inputBx">

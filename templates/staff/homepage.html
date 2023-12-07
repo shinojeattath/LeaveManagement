@@ -1,0 +1,56 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .left-half {
+            flex: 50%;
+            background-image: url("{% static 'college.jpg'%}");
+            background-size: cover;
+            background-position: center;
+        }
+        .right-half {
+            flex: 50%;
+            padding: 20px;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .right-half a {
+            margin: 10px 0;
+            text-decoration: none;
+            color: #333;
+            font-size: 20px;
+            border: 1px solid #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .right-half a:hover {
+            background-color: #333;
+            color: #f2f2f2;
+        }
+        @media screen and (max-width: 600px) {
+            .left-half, .right-half {
+                flex: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-half"></div>
+        <div class="right-half">
+            <a href="staff_login.html">Staff Login</a><br>
+            <a href="hod_login.html">HOD Login</a><br>
+            <a href="hr_login.html">HR Login</a>
+        </div>
+    </div>
+</body>
+</html>
