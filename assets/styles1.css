@@ -1,0 +1,117 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.menu-button {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-button span {
+    height: 2px;
+    width: 25px;
+    background-color: #fff;
+    margin: 5px 0;
+}
+
+.slide-down-menu {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.slide-down-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.slide-down-menu li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.slide-down-menu a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.7); /* Opacity 70% */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px; /* Adjust the width as needed */
+    width: 80%;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 50px; /* Adjust the margin to make space for the header */
+}
+
+.logo {
+    max-width: 250px; /* Adjust the size as needed */
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+@media only screen and (max-width: 600px) {
+    .menu-button {
+        display: flex;
+    }
+
+    .slide-down-menu {
+        display: none;
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background-color: #3498db;
+        padding: 10px;
+        flex-direction: column;
+    }
+
+    .slide-down-menu.active {
+        display: flex;
+    }
+}

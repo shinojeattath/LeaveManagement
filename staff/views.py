@@ -10,7 +10,7 @@ from .models import Staff_Details, Leave_Application, Status_Leave_Application
 
 # Create your views here.
 def homepage(request):
-    pass
+    return render(request, 'staff/homepage.html')
 
 def user_login(request):
 
