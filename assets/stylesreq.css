@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: url('./Public/CollegePortait.jpeg') center/cover no-repeat fixed;
+    background: url('./reqbg.jpg') center/cover no-repeat fixed;
 }
 
 header {
@@ -46,8 +46,8 @@ header a:hover
     margin: 20px;
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.4);
-    overflow-y: auto; /* Add a scrollbar */
+    background-color: rgba(137, 137, 137, 0.4);
+    overflow-y: auto;
     margin-left: 10px;
     border-radius: 20px;
 
@@ -70,7 +70,7 @@ header a:hover
     margin-bottom: 10px;
     transition: background-color 0.3s;
     background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 .leave-request:hover 
@@ -142,9 +142,4 @@ header a:hover
     cursor: pointer;
     border-radius: 30px;
     opacity: 90%;
-}
-footer {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    text-align: center;
 }
