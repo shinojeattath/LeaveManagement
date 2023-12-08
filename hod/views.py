@@ -8,6 +8,7 @@ from django.utils import timezone
 from staff.models import Staff_Details, Leave_Application, Status_Leave_Application
 
 
+
 # Create your views here.
 def hod_login(request):
     if request.method == "POST":
@@ -27,3 +28,5 @@ def hod_login(request):
             messages.error(request, "Invalid username or Password")
     return render(request, 'hod/login.html')
 
+def leave_request(request):
+    return render(request, 'hod/leave_request.html')

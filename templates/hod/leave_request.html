@@ -1,0 +1,67 @@
+ {% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Approval System</title>
+    <link rel="stylesheet" href="{% static 'stylesreq.css' %}">
+</head>
+<body>
+
+<header>
+    <strong><a href="#" class="active">Home</a>
+    </strong>
+    <strong><a href="#" class="active">Logout</a>
+</header>
+
+<div class="content-container">
+    <div class="leave-container">
+        <div class="leave-heading">New Leave Request</div>
+        <div class="leave-request" onclick="toggleDetails(this)">
+            <div>
+                <strong>John Doe</strong>
+                <p>Reason: Family vacation</p>
+                <p>Type: Paid Leave</p>
+            </div>
+        </div>
+        <div class="leave-request" onclick="toggleDetails(this)">
+            <div>
+                <strong>Jane Doe</strong>
+                <p>Reason: Personal reasons</p>
+                <p>Type: Unpaid Leave</p>
+            </div>
+        </div>
+        <div class="leave-request" onclick="toggleDetails(this)">
+            <div>
+                <strong>Michael Smith</strong>
+                <p>Reason: Medical leave</p>
+                <p>Type: Sick Leave</p>
+            </div>
+        </div>
+        <div class="leave-request" onclick="toggleDetails(this)">
+            <div>
+                <strong>Emily Johnson</strong>
+                <p>Reason: Attending a conference</p>
+                <p>Type: Business Leave</p>
+            </div>
+        </div>
+        <!-- Add more leave requests here -->
+    </div>
+
+    <div class="leave-details">
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Branch:</strong> XYZ Branch</p>
+        <p><strong>Designation:</strong> Manager</p>
+        <p><strong>Reason for Leave:</strong> Family vacation</p>
+        <p><strong>Leave Type:</strong> Paid Leave</p>
+        <p><strong>Time of Request:</strong> 2023-10-15 10:30 AM</p>
+        <button class="approve-btn" onclick="approveRequest()">Approve</button>
+        <button class="reject-btn" onclick="rejectRequest()">Reject</button>
+        <button class="profile-btn" onclick="profile()">View Profile</button>
+    </div>
+</div>
+
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>
