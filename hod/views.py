@@ -20,7 +20,7 @@ def hod_login(request):
             login(request, user)
             request.session['username'] = username
             if user.groups.filter(name='HOD').exists():
-                return redirect('leave_requests')
+                return redirect('leave_request')
             else:
                 messages.error(request, "Invalid username or Password")
                 return render(request, 'hod/login.html')
