@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: url('./Public/CollegePortait.jpeg') center/cover no-repeat fixed;
+}
+
+header {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+header a{
+    color: var(--text-colour);
+    font-size: 1.5rem;
+    font-weight: 1000;
+    padding: 3px 16px;
+    margin: 10px 10px;
+    transition: all .50s ease;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 30px;
+}
+header a:hover
+{
+    color: black;
+    background-color: #fff;
+    border-color: #fff;
+}
+.content-container {
+    display: flex;
+    flex-grow: 1;
+}
+
+.leave-container {
+    flex-grow: 1;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.4);
+    overflow-y: auto; /* Add a scrollbar */
+    margin-left: 10px;
+    border-radius: 20px;
+
+}
+
+.leave-heading 
+{
+    font-size: 25px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #333;
+    padding-left: 4px;
+}
+
+.leave-request 
+{
+    cursor: pointer;
+    padding: 20px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+}
+
+.leave-request:hover 
+{
+    background-color: #ffffff;
+}
+
+.leave-details 
+{
+    padding: 20px;
+    width: 300px; /* Adjust the width of the details */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: none;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: -10px;
+    border-radius: 20px;
+}
+
+.approve-btn,
+.reject-btn,
+.profile-btn
+{
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.approve-btn {
+    background: #02ae38;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: 30px;
+    opacity: 90%;
+    
+}
+.approve-btn:hover
+{
+    background: #00ff51;
+}
+
+.reject-btn {
+    background: #b50505;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: 30px;
+    opacity: 90%;
+}
+.reject-btn:hover
+{
+    background: #ff0000;
+}
+.profile-btn
+{
+    background: #02ae38;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: 30px;
+    opacity: 90%;
+}
+footer {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    text-align: center;
+}

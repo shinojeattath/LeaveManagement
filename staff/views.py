@@ -36,7 +36,7 @@ def user_login(request):
 
 @login_required
 def profile(request):
-    emp_id = request.session.get('username', "NONE")
+    emp_id = request.session.get('username', "eNE")
     details = Staff_Details.objects.filter(employee_id=emp_id)
     if details.exists():
         detail = details[0]
