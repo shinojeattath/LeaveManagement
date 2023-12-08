@@ -22,8 +22,8 @@
     <div class="container">
         <img class="logo" src="{% static 'logo_large.png' %}" alt="Logo">
         <div class="buttons">
-            <button>STAFF LOGIN</button>
-            <button>HOD LOGIN</button>
+            <button><a href="{% url 'user_login' %}">STAFF LOGIN</a></button>
+            <button><a href="{% url 'hod_login' %}">HOD LOGIN</a></button>
             <button>HR LOGIN</button>
         </div>
     </div>
