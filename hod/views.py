@@ -29,4 +29,8 @@ def hod_login(request):
     return render(request, 'hod/login.html')
 
 def leave_request(request):
-    return render(request, 'hod/leave_request.html')
+    leave_applications = Leave_Application.objects.filter()
+    print(leave_applications)
+    return render(request, 'hod/leave_request.html', {'leave_applications': leave_applications, 'list': list})
+
+
