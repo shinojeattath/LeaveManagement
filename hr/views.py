@@ -27,4 +27,4 @@ def hr_login(request):
     return render(request, 'hr/login.html')
 
 def hr_homepage(request):
-    return HttpResponse("loogedin")
+    return render(request, 'hr/hrhomepage.html')
