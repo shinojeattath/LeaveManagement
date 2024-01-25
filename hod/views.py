@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.utils import timezone
 from staff.models import Staff_Details, Leave_Application, Status_Leave_Application
-
+import json
 
 
 # Create your views here.
@@ -30,7 +30,7 @@ def hod_login(request):
 
 def leave_request(request):
     leave_applications = Leave_Application.objects.filter()
-    print(leave_applications)
-    return render(request, 'hod/leave_request.html', {'leave_applications': leave_applications, 'list': list})
+    
+    return render(request, 'hod/leave_request.html', {'leave_applications': leave_applications})
 
 
