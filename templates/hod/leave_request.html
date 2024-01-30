@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Approval System</title>
     <link rel="stylesheet" href="{% static 'stylesreq.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 
@@ -19,15 +21,36 @@
 <div class="content-container">
     <div class="leave-container">
         <div class="leave-heading">New Leave Request</div>
-
         {% for leave_application in leave_applications %}
+        <form method="post" id="LeaveForm" action="{% url 'leave_approval' %}">
+      
+            {% csrf_token %}
+            <input type="hidden" id="employee_id" name="employee_id" value="{{ leave_application.employee_id }}">
+            <input type="hidden" name="typeofleave" value="{{leave_application.nature_of_leave}}">
+            <input type="hidden" name="numberofdays" value="{{leave_application.no_of_days}}">
+        </form>
+
             <div class="leave-request" onclick="toggleDetails(this)">
-                <div>
-                    Name: <strong>{{ leave_application.name }}</strong>
-                    <p>Reason: {{ leave_application.reason}}</p>
-                    <p>Type: {{ leave_application.nature_of_leave }}</p>
+                <div>           
+                    <p>Name: <strong>{{ leave_application.name }}</strong></p>
+                    <p style="display: none;">Department: {{ leave_application.department}}</p>
+                    <p style="display: none;">Number of days:{{leave_application.no_of_days}}</p>
+                    <p>Type: {{ leave_application.nature_of_leave}}</p>
+                    <p>Leave From: {{leave_application.leave_from}}</p>
+                    <p style="display: none;"><strong>Reason: </strong> {{ leave_application.reason}}</p>
+                    <p style="display: none;"><strong>Time of Request:</strong>{{leave_application.time_of_request}}</p>
+                    
+                    <p style="display: none;"><strong></strong>{{leave_application.alt_class_sem}}</p>
+                    <p style="display: none;"><strong></strong>{{leave_application.alt_hour}}</p>
+                    <p style="display: none;"><strong></strong>{{leave_application.subject}}</p>
+                    <p style="display: none;"><strong></strong>{{leave_application.alt_assigned_teacher}}</p>
+                    <p style="display: none;"><strong></strong>{{leave_application.alt_linways_assigned}}</p>
+
+                    
+
                 </div>
             </div>
+            <a href="{% url 'leave_approval' %}">Approval</a>
         {% endfor %}
 
 
@@ -35,13 +58,14 @@
     </div>
 
     <div class="leave-details">
+
         <p><strong >Name:</strong> John Doe</p>
         <p><strong>Branch:</strong> XYZ Branch</p>
         <p><strong>Designation:</strong> Manager</p>
-        <p><strong>Reason for Leave:</strong> Family vacation</p>
+        <p><strong>Reason for Leave:</strong> Family vacation</p>   
         <p><strong>Leave Type:</strong> Paid Leave</p>
         <p><strong>Time of Request:</strong> 2023-10-15 10:30 AM</p>
-        <button class="approve-btn" onclick="approveRequest()">Approve</button>
+        <button class="approve-btn" onclick="approveRequest()" >Approve</button>
         <button class="reject-btn" onclick="rejectRequest()">Reject</button>
         <button class="profile-btn" onclick="profile()">View Profile</button>
     </div>
@@ -55,17 +79,39 @@
 
 function toggleDetails(request) {
     const details = document.querySelector('.leave-details');
+
     const leaveName = request.querySelector('strong').innerText;
-    const leaveReason = request.querySelector('p:nth-child(2)').innerText;
-    const leaveType = request.querySelector('p:nth-child(3)').innerText;
+    const department = request.querySelector('p:nth-child(2)').innerText;
+    const leaveReason = request.querySelector('p:nth-child(6)').innerText;
+    const no_of_days = request.querySelector('p:nth-child(3)').innerText;
+    const timeOfRequest = request.querySelector('p:nth-child(7)').innerText;
+    const LeaveFrom  = request.querySelector('p:nth-child(5)').innerText;
+    const leaveType = request.querySelector('p:nth-child(4)').innerText;
+
+    const alt_sem = request.querySelector('p:nth-child(8)').innerHTML
+    const alt_hour = request.querySelector('p:nth-child(9)').innerHTML
+    const alt_subject = request.querySelector('p:nth-child(10)').innerHTML
+    const alt_assigned_teacher = request.querySelector('p:nth-child(11)').innerHTML
+    const alt_linways_assigned = request.querySelector('p:nth-child(12)').innerHTML
+
 
     details.innerHTML = `
         <p><strong>Name:</strong> ${leaveName}</p>
-        <p><strong>Branch:</strong> XYZ Branch</p>
-        <p><strong>Designation:</strong> Manager</p>
-        <p><strong>Reason for Leave:</strong> ${leaveReason.slice(8)}</p>
-        <p><strong>Leave Type:</strong> ${leaveType.slice(6)}</p>
-        <p><strong>Time of Request:</strong> 2023-10-15 10:30 AM</p>
+        <p><strong>Department:</strong> ${department.slice(11)}</p>
+        <p><strong>Leave From:</strong> ${LeaveFrom.slice(11)}</p>
+        <p><strong>Number of Days: </strong> ${no_of_days.slice(15)}</p>
+        <p><strong>Leave Type:</strong> ${leaveType.slice(5)}</p>
+        <p><strong>Reason:</strong> ${leaveReason.slice(7)}</p>
+        <p><strong>Time of Request</strong> ${timeOfRequest.slice(15)}</p>
+
+        <p style="text-decoration: underline; font-weight: bold; color: red"><strong>Alternate Arrangements</strong></p>
+        
+        <p><strong>Sem and Class:</strong> ${alt_sem}</p>
+        <p><strong>Hours:</strong> ${alt_hour}</p>
+        <p><strong>Subject:</strong> ${alt_subject}</p>
+        <p><strong>Assigned Teacher:</strong> ${alt_assigned_teacher}</p>
+        <p><strong>Linways Assigned:</strong> ${alt_linways_assigned}</p>
+
         <button class="approve-btn" onclick="approveRequest()">Approve</button>
         <button class="reject-btn" onclick="rejectRequest()">Reject</button>
     `;
@@ -73,9 +119,9 @@ function toggleDetails(request) {
     details.style.display = 'block';
 }
 
-function approveRequest() {
-    alert('Request Approved');
+function approveRequest() { 
 }
+
 
 function rejectRequest() {
     alert('Request Rejected');
