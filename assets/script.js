@@ -1,3 +1,7 @@
+var dataDictionary=JSON.parse('{{dataDictionary_json|safe}}');
+    console.log(dataDictionary);
+
+
 function toggleDetails(request) {
     const details = document.querySelector('.leave-details');
     const leaveName = request.querySelector('strong').innerText;

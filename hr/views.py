@@ -6,11 +6,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.utils import timezone
 from staff.models import Staff_Details, Leave_Application, Status_Leave_Application
-import json
-
 
 # Create your views here.
-def hod_login(request):
+def hr_login(request):
     if request.method == "POST":
         username = request.POST['username']
         pass1 = request.POST['password']
@@ -19,20 +17,14 @@ def hod_login(request):
         if user is not None:
             login(request, user)
             request.session['username'] = username
-            if user.groups.filter(name='HOD').exists():
-                return redirect('leave_request')
+            if user.groups.filter(name='HR').exists():
+                return redirect('hr_homepage')
             else:
                 messages.error(request, "Invalid username or Password")
                 return render(request, 'hod/login.html')
         else:
             messages.error(request, "Invalid username or Password")
-    return render(request, 'hod/login.html')
+    return render(request, 'hr/login.html')
 
-def leave_request(request):
-
-# app password - sljv zfrc frjx waqb
-    leave_applications = Leave_Application.objects.filter()
-    
-    return render(request, 'hod/leave_request.html', {'leave_applications': leave_applications})
-
-
+def hr_homepage(request):
+    return render(request, 'hr/hrhomepage.html')

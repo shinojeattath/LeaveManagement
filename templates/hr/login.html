@@ -20,21 +20,19 @@
         </div>
         <div class="contentBx">
             <div class="formBx">
-                <h2>HOD Login</h2>
+                <h2>HR Login</h2>
                 <div><span></span></div>
-                <form method = 'post'>
-        
-                {% if messages %}
-                    <div class="messages">
-                    {% for message in messages %}
-                        <p style="color: red; text-align: center;" class="error">{{ message }}</p>
-                    {% endfor %}
-                    </div>
-                {% endif %}
-
+                <form method='post' action=''>
+        {% if messages %}
+            <div class="messages">
+            {% for message in messages %}
+                <p style="color: red; text-align: center;" class="error">{{ message }}</p>
+            {% endfor %}
+            </div>
+        {% endif %}
                 {% csrf_token %}
                     <div class="inputBx">
-                        <span>Username</span>
+                        <span>Employee ID</span>
                         <input type="text" name="username" required>
                     </div>
                     <div class="inputBx">
@@ -43,7 +41,9 @@
                     </div>
 
                     <div class="inputBx">
+                        
                         <input type="submit" value="Login" name="">
+                        
                     </div>
                 </form>
             </div>

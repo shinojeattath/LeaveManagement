@@ -1,0 +1,50 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Selection</title>
+    <link rel="stylesheet" href="{% static 'hr_styles.css'%}">
+</head>
+<body>
+
+    <header>
+        <h1>Department Management System</h1>
+    </header>
+
+    <div class="container">
+        <!-- Left side scrollable bar for departments -->
+        <div class="scrollable-bar hidden">
+            <div class="department-container">
+                <a href="#" onclick="showDepartment('Computer Science')">Computer Science</a>
+                <a href="#" onclick="showDepartment('Civil')">Civil</a>
+                <a href="#" onclick="showDepartment('Mechanical')">Mechanical</a>
+                <a href="#" onclick="showDepartment('Electrical')">Electrical</a>
+                <a href="#" onclick="showDepartment('Electronics')">Electronics</a>
+                <a href="#" onclick="showDepartment('ASH')">ASH</a>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div class="buttons-container">
+                <button class="department-button" onclick="showDepartment('Computer Science')">Computer Science</button>
+                <button class="department-button" onclick="showDepartment('Civil')">Civil</button>
+                <button class="department-button" onclick="showDepartment('Mechanical')">Mechanical</button>
+                <button class="department-button" onclick="showDepartment('Electrical')">Electrical</button>
+                <button class="department-button" onclick="showDepartment('Electronics')">Electronics</button>
+                <button class="department-button" onclick="showDepartment('ASH')">ASH</button>
+            </div>
+
+            <div id="staff-list" class="hidden">
+                <h2>Staff List</h2>
+                <ul>
+                    <!-- Staff list for selected department will be dynamically generated here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'hr_script.css' %}"></script>
+</body>
+</html>

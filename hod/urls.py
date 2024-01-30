@@ -5,5 +5,4 @@ urlpatterns = [
     path("login/",views.hod_login, name='hod_login'),
     path("leave_request/",views.leave_request, name='leave_request')
     
-    
 ]
