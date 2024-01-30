@@ -143,3 +143,7 @@ header a:hover
     border-radius: 30px;
     opacity: 90%;
 }
+
+.hidden{
+    display: none;
+}

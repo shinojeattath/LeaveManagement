@@ -17,6 +17,9 @@ class  Staff_Details(models.Model):
     LoP = models.PositiveIntegerField(null=True)
     comp_off = models.PositiveBigIntegerField(null = True)
 
+    def __str__(self):
+        return str(self.employee_id)
+
 
 class Leave_Application(models.Model):
 
