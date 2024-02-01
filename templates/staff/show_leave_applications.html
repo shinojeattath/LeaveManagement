@@ -85,8 +85,8 @@
         {% endfor %}
     {% endif %}
     
-    {% if approved_applications %}
-        {% for i in approved_applications %}
+    {% if status_of_approved_applications %}
+        {% for i in status_of_approved_applications %}
             <tbody>
                 <tr>
                     <td>{{i.nature_of_leave}}</td>

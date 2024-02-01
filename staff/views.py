@@ -108,12 +108,12 @@ def new_leave_application(request):
 
 @login_required
 def show_leave_application(request):
-    username = request.session.get('username', "NONE")
-    print(username)
+    employee_id = request.session.get('username', "NONE")
+    print(employee_id)
 
-    status_of_approved_applications = Status_Leave_Application.objects.filter(employee_id = username).order_by('-leave_from')
+    status_of_approved_applications = Status_Leave_Application.objects.filter(employee_id = employee_id).order_by('-leave_from')
     
-    pending_applications = Leave_Application.objects.filter(employee_id = username)
+    pending_applications = Leave_Application.objects.filter(employee_id = employee_id)
     
     return render(request, 'staff/show_leave_applications.html',{'status_of_approved_applications': status_of_approved_applications, 'pending_applications': pending_applications})
     
