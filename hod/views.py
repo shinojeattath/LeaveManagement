@@ -32,17 +32,19 @@ def hod_login(request):
     return render(request, 'hod/login.html')
 
 def leave_request(request):
-
+    employee_id = request.session.get('username')
+    profile = get_object_or_404(Staff_Details, employee_id = employee_id)
+    department = profile.department
+    print(department)
+    #print(employee_id)
 # app password - sljv zfrc frjx waqb
-    leave_applications = Leave_Application.objects.filter()
+    leave_applications = Leave_Application.objects.filter(department = department)
     
     return render(request, 'hod/leave_request.html', {'leave_applications': leave_applications})
 
 def leave_approval(request):
-   # leave_applications = Leave_Application.objects.filter(name = 'TEST10')
-    #########################
+   
     if request.method == 'POST':
-        # Retrieve the data from the AJAX request
         employee_id = request.POST.get('employee_id')
         no_of_days = int(request.POST.get('no_of_days'))
         department = request.POST.get('department')
@@ -150,8 +152,8 @@ def send_mail_staff(request):
     print(employee_id)
 
     subject = 'Leave Status'
-    message = f'Entha Mwonoose Jaada aahno'
-    recipient = 'diyaelfadhilph@gmail.com'
+    message = f'Entha Mwonoose Jaada aahno To HOD'
+    recipient = 'em.shinojeattath5112@gmail.com'
     from_mail = 'minimol.project@gmail.com'
     send_mail(subject, message, from_mail, [recipient])
 
@@ -164,7 +166,7 @@ def send_mail_hr(request):
     print(employee_id)
 
     subject = 'Leave Status'
-    message = f'Entha Mwonoose Jaada aahno'
-    recipient = 'diyaelfadhilph@gmail.com'
+    message = f'Entha Mwonoose Jaada aahno To HR'
+    recipient = 'em.shinojeattath5112@gmail.com'
     from_mail = 'minimol.project@gmail.com'
     send_mail(subject, message, from_mail, [recipient])

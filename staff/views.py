@@ -22,9 +22,11 @@ def user_login(request):
         if user is not None:
             login(request, user)
             request.session['username'] = username
+            print(username)
             if user.groups.filter(name='STAFF').exists():
                 return redirect('profile')
             else:
+                logout(request)
                 messages.error(request, "Invalid Employee ID or Password")
                 return render(request, 'staff/login.html')
     
@@ -37,12 +39,12 @@ def user_login(request):
 @login_required
 def profile(request):
     emp_id = request.session.get('username', "NONE")
-    details = Staff_Details.objects.filter(employee_id=emp_id)
+    details = Staff_Details.objects.filter(employee_id = emp_id)
     if details.exists():
         detail = details[0]
     else:
         detail = None
-    print(detail.name)
+        print(detail.emp_id)
 
     return render(request, 'staff/profile.html', {'detail': detail})
 
@@ -120,7 +122,7 @@ def show_leave_application(request):
 def signup(request):
     if request.method == "POST":
         employeeId = request.POST['employeeId']
-        ename = request.POST['ename']
+        ename = request.POST['name']
         department = request.POST['department']
         designation = request.POST['designation']
         email = request.POST['email']
@@ -147,5 +149,5 @@ def signup(request):
             comp_off = 0
         )
 
-        return redirect('user_login')  
+        return redirect('signup')  
     return render(request, 'staff/signup.html')
