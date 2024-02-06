@@ -1,160 +1,46 @@
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+{% load static from static %}
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{{detail.employee_id}}-Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            text-align: center;
-            background-color: #3370e0;
-            color: #fff;
-            padding: 5px;
-            
-        }
-
-        header h1 {
-            font-size: 24px;
-        }
-
-        a {
-            text-decoration: none;
-            color: #ffffff;
-            padding: 8px 20px;
-            background-color: rgb(57, 63, 178);
-            border-radius: 15px;
-            transition: 0.3s ease;
-        }
-
-
-        .header-logout {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            
-        }
-
-        a:hover {
-            background-color: rgb(127, 129, 255);
-            color: #ffffff;
-        }
-
-        .profile-info {
-            display: flex;
-            justify-content: space-around;
-            margin: 40px;
-        }
-
-        .profile-info div {
-            text-align: center;
-        }
-
-        .profile-info label {
-            font-weight: bold;
-            color: #666;
-        }
-
-
-
-        .profile-info input {
-            width: 160px;
-            font-size: 16px;
-            margin-left: 10px;
-            font-weight: bold;
-        }
-
-        .profile-info div {
-            text-align: left; 
-            display: block;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #ffffff;
-            color: #666;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .info-text {
-            font-size: 14px;
-            font-weight: bold;
-            color: #888;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/CSS into 1/public/Uec Logo 2.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>{{detail.name}} Profile</title>
 </head>
 <body>
     <header>
-        <h1>EMPLOYEE ID: {{detail.employee_id}}</h1>
-        <div class="header-logout">
-            <a href="{% url 'signout' %}">Logout</a>
-        </div>
+        <img src="{% static 'Uec Logo 1.png' %}" alt="Logo" class="logo3">
+        <button class="button1" onclick="signout()">Signout</button>
     </header>
 
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == 'success' %}
-                <div class="alert alert-success alert-dismissible fade show mx-auto text-center" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            {% elif message.tags == 'warning' %}
-                <div class="alert alert-warning alert-dismissible fade show mx-auto text-center" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-
-    {% if detail %}
-        <div class="profile-info" style="text-align: left; display: block;">
-            STAFF NAME&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<strong>{{detail.name}}</strong>
-        </div >
-    {% else %}
-        <div class="profile-info" style="text-align: left; display: block;">
-            No details found for the given staff name.
-        </div>
-    {% endif %}
-  
-
-        <div class="profile-info" style="text-align: left; display: block;">
-        <div style="text-align: left; display: block;">
-            DEPARTMENT&nbsp;:&nbsp;&nbsp;<strong> {{detail.department}} </strong>
-            
+    <div class="container">
+        <h2>EMPLOYEE ID: {{detail.employee_id}}</h2>
+    <div class="profile-info">
+        <div>
+            STAFF NAME: <strong>{{detail.name}}</strong>
         </div>
     </div>
-    <div class="profile-info" style="text-align: left; display: block;">
-        <div style="text-align: left; display: block;">
-            DESIGNATION&nbsp;:&nbsp;&nbsp;<strong> {{detail.designation}} </strong>
+    <div class="profile-info">
+        <div>
+            DEPARTMENT: <strong>{{detail.department}}</strong>
         </div>
-
-
-        
+    </div>
+    <div class="profile-info">
+        <div>
+            DESIGNATION: <strong>{{detail.designation}}</strong>
+        </div>
     </div>
 
+    <!-- Leave Details Table -->
     <br><br>
     <table>
-    
         <tr>
             <th>Leave Nature</th>
             <th>Balance Leave</th>
@@ -203,14 +89,29 @@
             <td>0</td>
             <td>0</td>
         </tr>
-  
+        <!-- Add more rows as needed -->
     </table><br>
     <div style="text-align: right;">
-        <a href="{% url 'new_leave_application' %}">New application</a>
-        <a href="{% url 'show_leave_application' %}">View Applications</a>
+        <button class="button1" onclick="newApplication()">New application</button>
+        <button class="button1" onclick="viewApplication()">View Applications</button>
+    </div>
     </div>
     <div class="info-text">
-        &nbsp;&nbsp;CL1 & CL2 = Casual Leave, MP = Medical Leave, VL = Vacation Leave, DL = Duty Leave
+        CL1 & CL2 = Casual Leave | MP = Medical Leave | VL = Vacation Leave | DL = Duty Leave
     </div>
+    <script>
+        function viewApplication()
+        {
+            window.location.href = "{% url 'show_leave_application' %}";
+        }
+        function newApplication()
+        {
+            window.location.href = "{% url 'new_leave_application' %}";
+        }
+        function signout()
+        {
+            window.location.href = "{% url 'signout' %}";
+        }
+    </script>
 </body>
 </html>
