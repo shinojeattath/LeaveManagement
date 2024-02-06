@@ -1,77 +1,39 @@
+{% load static from static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Leave Requests</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: rgb(46, 197, 243);
-            color: #ffffff;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        @media (max-width: 768px) {
-            table {
-                font-size: 14px;
-            }
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/CSS into 1/public/Uec Logo 2.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Leave Status</title>
+    
 </head>
 <body>
     <header>
-        <h1>Leave Requests</h1>
+        <button class="button-back" onclick="goBack()">Back</button>
     </header>
+
     <div class="container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Leave Type</th>
-                    <th>Number of Days</th>
-                    <th>Start Date</th>
-                    <th>Time of Request</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-    {% if pending_applications %}
+        <h2>Leave Applications</h2>
+    <div class="profile-info">
+        <div>
+            STAFF NAME: <strong>{{ pending_applications.name }}</strong>
+        </div>
+    </div>
+    <!-- Leave Details Table -->
+    <br><br>
+    <table>
+        <tr>
+            <th>Leave Type</th>
+            <th>Number of Days</th>
+            <th>Start Date</th>
+            <th>Time of Request</th>
+            <th>Status</th>
+        </tr>
+        {% if pending_applications %}
         {% for i in pending_applications %}
-            <tbody>
+            
                 <tr>
                     <td>{{i.nature_of_leave}}</td>
                     <td>{{i.no_of_days}}</td>
@@ -80,14 +42,14 @@
                     
                     <td>{{i.status_of_request}}</td>
                 </tr>
-            </tbody>
+           
             
         {% endfor %}
     {% endif %}
     
     {% if status_of_approved_applications %}
         {% for i in status_of_approved_applications %}
-            <tbody>
+           
                 <tr>
                     <td>{{i.nature_of_leave}}</td>
                     <td>{{i.no_of_days}}</td>
@@ -99,12 +61,17 @@
                     <td style="color: red;">{{ i.status_of_request }}</td>
                     {% endif %}
                 </tr>
-            </tbody>
+        
         {% endfor %}
     {% endif %}
+        <!-- Add more rows as needed -->
+    <script src="script.js">
+    
+        function goBack()
+        {
+            windows.location.href = "{% url 'profile' %}";
+        }
 
-
-        </table>
-    </div>
+    </script>
 </body>
 </html>

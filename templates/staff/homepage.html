@@ -4,29 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'styles1.css'%}">
-    <title>Your Webpage</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <title>Home</title>
 </head>
 <body>
     <header>
-        <div class="menu-button">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <nav class="slide-down-menu">
-            <ul>
-            </ul>
-        </nav>
     </header>
     <div class="container">
-        <img class="logo" src="{% static 'logo_large.png' %}" alt="Logo"> <!-- Replace with your logo path -->
+        <img class="logo" src="{% static 'Uec Logo 2.png' %}" alt="Logo">
+        <p>Select your post to <a href="#" onclick="location.reload(); return false;">SignIn</a></p>
         <div class="buttons">
             <button><a href="{% url 'user_login' %}">STAFF LOGIN</a></button>
             <button><a href="{% url 'hod_login' %}">HOD LOGIN</a></button>
             <button><a href="{% url 'hr_login' %}">HR LOGIN</a></button>
         </div>
     </div>
-    <script src="script.js"></script> <!-- Add a script for handling menu interactions -->
+    <script src="script.js"></script>
 </body>
 </html>
