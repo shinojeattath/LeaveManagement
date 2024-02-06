@@ -3,9 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.utils import timezone
 from staff.models import Staff_Details, Leave_Application, Status_Leave_Application
+from django.core.serializers import serialize
 
 # Create your views here.
 def hr_login(request):
@@ -28,3 +29,8 @@ def hr_login(request):
 
 def hr_homepage(request):
     return render(request, 'hr/HRdept.html')
+
+def get_data(request):
+    data = Status_Leave_Application.objects.all()
+    json_data = serialize('json', data)
+    return JsonResponse({'data': json_data}, safe=False)

@@ -20,7 +20,6 @@ class Staff_Details(models.Model):
     def __str__(self):
         return str(self.employee_id)
 
-
 class Leave_Application(models.Model):
 
     employee_id = models.ForeignKey(Staff_Details,on_delete=models.CASCADE, related_name="emp_id")

@@ -121,7 +121,8 @@ def leave_approval(request):
 def  reject_leave(request):
     if request.method == 'POST':
         employee_id = request.POST.get('employee_id')
-
+        send_mail_hr(request)
+        
         approved_leaves = get_object_or_404(Leave_Application, employee_id = employee_id)
         status_of_request = 'REJECTED'
         Status_Leave_Application.objects.create(
@@ -154,7 +155,7 @@ def send_mail_staff(request):
     subject = 'Leave Status'
     message = f'Entha Mwonoose Jaada aahno To HOD'
     recipient = 'em.shinojeattath5112@gmail.com'
-    from_mail = 'minimol.project@gmail.com'
+    from_mail = 'Anzil'
     send_mail(subject, message, from_mail, [recipient])
 
 def send_mail_hr(request):
