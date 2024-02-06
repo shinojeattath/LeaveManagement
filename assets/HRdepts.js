@@ -10,6 +10,26 @@ function showDepartment(department) {
     staffList.style.display = 'block';
 
     // Dummy staff list for demonstration
+
+    ////////////////////////////////////
+
+    const departmentData = leaveApplicationData.filter(item => item.fields.department === department);
+    console.log('################################################');
+    console.log(departmentData);
+    // Show staff list for the selected department
+    var staffList = document.getElementById('staff-list');
+    staffList.style.display = 'block';
+
+    var staffListHtml = '<ul>';
+    departmentData.forEach(function (staff) {
+        staffListHtml += '<li onclick="navigateToStaffPage(\'' + staff.fields.name + '\')">' + staff.fields.name + '</li>';
+    });
+    staffListHtml += '</ul>';
+
+    staffList.innerHTML = staffListHtml;
+
+
+    ////////////////////////////////////
     var staffData = getStaffListByDepartment(department);
     var staffListHtml = '<ul>';
     staffData.forEach(function (staff) {
@@ -25,22 +45,22 @@ function navigateToStaffPage(staffName) {
     console.log('Selected Staff:', staffName);
 }
 
-// Dummy function to get staff list based on the selected department
-function getStaffListByDepartment(department) {
-    switch (department) {
-        case 'Computer Science':
-            return ['John Doe', 'Jane Smith', 'Alice Johnson'];
-        case 'Civil':
-            return ['Bob Williams', 'Eva Brown', 'Charlie Davis'];
-        case 'Mechanical':
-            return ['David Wilson', 'Sophie White', 'Frank Miller'];
-        case 'Electrical':
-            return ['Grace Taylor', 'Henry Moore', 'Ivy Green'];
-        case 'Electronics':
-            return ['Jack Harris', 'Kelly Clark', 'Leo Turner'];
-        case 'ASH':
-            return ['Mia Turner', 'Noah Hall', 'Olivia Scott'];
-        default:
-            return [];
-    }
+
+function fetchDataFromDjango() {
+    fetch('/hr/get_data/')
+        .then(response => response.json())
+        .then(data => {
+            
+            leaveApplicationData = data.data;
+            console.log('Data received from Django:', leaveApplicationData);
+            console.log('________________________________________');
+
+            // Your logic to handle the received data goes here
+            showDepartment('CSE');
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
 }
+
+fetchDataFromDjango();
