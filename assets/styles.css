@@ -142,8 +142,10 @@ button {
 }
 
 button a {
+    display: block;
     text-decoration: none;
     color: #fff;
+    height: auto;
 }
 
 button:hover {

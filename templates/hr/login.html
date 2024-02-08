@@ -4,25 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>SignIn</title>
 </head>
 <body>
-    <header>
-        <ul class="navbar">
-            <strong><a href="{% url 'homepage' %}" class="active">Home</a>
-            </strong>
-        </ul>
-    </header>
-     <section>
-        <div class="imgBx">
-            <img src="{% static 'college.jpg'%}">
+    <div class="container">
+        <img class="logo2" src="{% static 'Uec Logo 2.png' %}" alt="Logo">
+        <div class="signin">
+            <p>Sign In</p>
         </div>
-        <div class="contentBx">
-            <div class="formBx">
-                <h2>HR Login</h2>
-                <div><span></span></div>
-                <form method='post' action=''>
+        <p>Use your account</p>
+        <form method='post'>
+
         {% if messages %}
             <div class="messages">
             {% for message in messages %}
@@ -30,24 +24,24 @@
             {% endfor %}
             </div>
         {% endif %}
-                {% csrf_token %}
-                    <div class="inputBx">
-                        <span>Employee ID</span>
-                        <input type="text" name="username" required>
-                    </div>
-                    <div class="inputBx">
-                        <span>Password</span>
-                        <input type="password" name="password" required>
-                    </div>
 
-                    <div class="inputBx">
-                        
-                        <input type="submit" value="Login" name="">
-                        
-                    </div>
-                </form>
+        {% csrf_token %}
+            <div class="inputBx">
+                <input type="text" name="username" required>
+                <label alt='Name' placeholder='Name'></label>
             </div>
-        </div>
-     </section>
+            <div class="inputBx">
+                <input type="password" name="password" required>
+                <label alt='Password' placeholder='Password'></label>
+            </div>
+            <div class="forgot">
+                <a href="#" onclick="location.reload(); return false;">Forgot?</a>
+            </div> 
+            <div class="submit">
+                <button type="submit">Sign In</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
