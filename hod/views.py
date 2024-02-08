@@ -45,90 +45,79 @@ def leave_request(request):
 
 def leave_approval(request):
    
-    if request.method == 'POST':
-        employee_id = request.POST.get('employee_id')
-        no_of_days = int(request.POST.get('no_of_days'))
-        department = request.POST.get('department')
-        typeOfLeave = request.POST.get('leaveType')
-        name = request.POST.get('name')
-        leaveFrom = request.POST.get('leaveFrom')
-
-        request.session['name'] = name
-        request.session['employee_id'] = employee_id
-        request.session['no_of_days'] = no_of_days
-        request.session['leaveFrom'] = leaveFrom
-        request.session['department'] = department
-
-        leave_application = get_object_or_404(Staff_Details, employee_id = employee_id)
-        approved_leaves = get_object_or_404(Leave_Application, employee_id = employee_id)
-
-        if typeOfLeave == "CL1":
-            numberofleaves = int(leave_application.cl1_bal)
-        elif typeOfLeave == "CL2":
-            numberofleaves = int(leave_application.cl2_bal)
-        elif typeOfLeave == "ML":
-            numberofleaves = int(leave_application.ML_bal)
-        elif typeOfLeave == "VL":
-            numberofleaves = int(leave_application.VL_bal)
-        elif typeOfLeave == "DL":
-            numberofleaves = int(leave_application.DL_bal)
-        elif typeOfLeave == "LoP":
-            numberofleaves = int(leave_application.LoP)
-
-        left = numberofleaves - no_of_days
-        
-        if typeOfLeave == "CL1":
-            leave_application.cl1_bal = left
-        elif typeOfLeave == "CL2":
-            leave_application.cl2_bal = left
-        elif typeOfLeave == "ML":
-            leave_application.ML_bal = left
-        elif typeOfLeave == "VL":
-            leave_application.VL_bal = left
-        elif typeOfLeave == "DL":
-            leave_application.DL_bal = left
-        elif typeOfLeave == "LoP":
-            leave_application.LoP = left
-
-        leave_application.save()
-
-        status_of_request = 'APPROVED'
-
-        send_mail_staff(request)
-        send_mail_hr(request)
-
-
-        Status_Leave_Application.objects.create(
-            employee_id = approved_leaves.employee_id,
-            name=approved_leaves.name,
-            department=approved_leaves.department,
-            nature_of_leave=approved_leaves.nature_of_leave,
-            no_of_days=approved_leaves.no_of_days,
-            leave_from=approved_leaves.leave_from,
-            reason=approved_leaves.reason,
-            alt_class_sem=approved_leaves.alt_class_sem,
-            alt_hour=approved_leaves.alt_hour,
-            alt_subject=approved_leaves.alt_subject,
-            alt_assigned_teacher=approved_leaves.alt_assigned_teacher,
-            alt_linways_assigned=approved_leaves.alt_linways_assigned,
-            status_of_request = status_of_request,
-            time_of_request = approved_leaves.time_of_request
-        )
-        approved_leaves.delete()
-
-
-        return redirect('leave_request')
+    
+    employee_id = request.session.get('staff_employee_id')
+    print('1111111111111111111111')
+    print(employee_id)
+    #no_of_days = int(request.POST.get('no_of_days'))
+    ##department = request.POST.get('department')
+   # typeOfLeave = request.POST.get('leaveType')
+    #name = request.POST.get('name')
+    #leaveFrom = request.POST.get('leaveFrom')
+    
+    leave_application = get_object_or_404(Staff_Details, employee_id = employee_id)
+    approved_leaves = get_object_or_404(Leave_Application, employee_id = employee_id)
+    typeOfLeave = approved_leaves.nature_of_leave
+    no_of_days = int(approved_leaves.no_of_days)
+    if typeOfLeave == "CL1":
+        numberofleaves = int(leave_application.cl1_bal)
+    elif typeOfLeave == "CL2":
+        numberofleaves = int(leave_application.cl2_bal)
+    elif typeOfLeave == "ML":
+        numberofleaves = int(leave_application.ML_bal)
+    elif typeOfLeave == "VL":
+        numberofleaves = int(leave_application.VL_bal)
+    elif typeOfLeave == "DL":
+        numberofleaves = int(leave_application.DL_bal)
+    elif typeOfLeave == "LoP":
+        numberofleaves = int(leave_application.LoP)
+    left = numberofleaves - no_of_days
+    
+    if typeOfLeave == "CL1":
+        leave_application.cl1_bal = left
+    elif typeOfLeave == "CL2":
+        leave_application.cl2_bal = left
+    elif typeOfLeave == "ML":
+        leave_application.ML_bal = left
+    elif typeOfLeave == "VL":
+        leave_application.VL_bal = left
+    elif typeOfLeave == "DL":
+        leave_application.DL_bal = left
+    elif typeOfLeave == "LoP":
+        leave_application.LoP = left
+    leave_application.save()
+    status_of_request = 'APPROVED'
+    #send_mail_staff(request)
+    #send_mail_hr(request)
+    Status_Leave_Application.objects.create(
+        employee_id = approved_leaves.employee_id,
+        name=approved_leaves.name,
+        department=approved_leaves.department,
+        nature_of_leave=approved_leaves.nature_of_leave,
+        no_of_days=approved_leaves.no_of_days,
+        leave_from=approved_leaves.leave_from,
+        reason=approved_leaves.reason,
+        #alt_class_sem=approved_leaves.alt_class_sem,
+        #alt_hour=approved_leaves.alt_hour,
+        #alt_subject=approved_leaves.alt_subject,
+        #alt_assigned_teacher=approved_leaves.alt_assigned_teacher,
+        #alt_linways_assigned=approved_leaves.alt_linways_assigned,
+        status_of_request = status_of_request,
+        time_of_request = approved_leaves.time_of_request
+    )
+    approved_leaves.delete()
+    return redirect('leave_request')
 
 def  reject_leave(request):
     
     employee_id = request.session.get('staff_employee_id')
     print(employee_id)
     #send_mail_hr(request)
-    
+    emp = get_object_or_404(Staff_Details, employee_id = employee_id)
     approved_leaves = get_object_or_404(Leave_Application, employee_id = employee_id)
     status_of_request = 'REJECTED'
     Status_Leave_Application.objects.create(
-        employee_id = approved_leaves.employee_id,
+        employee_id = emp,
         nature_of_leave=approved_leaves.nature_of_leave,
         no_of_days=approved_leaves.no_of_days,
         leave_from=approved_leaves.leave_from,
