@@ -15,9 +15,9 @@
         <img class="logo" src="{% static 'Uec Logo 2.png' %}" alt="Logo">
         <p>Select your post to <a href="#" onclick="location.reload(); return false;">SignIn</a></p>
         <div class="buttons">
-            <button><a href="{% url 'user_login' %}">STAFF LOGIN</a></button>
-            <button><a href="{% url 'hod_login' %}">HOD LOGIN</a></button>
-            <button><a href="{% url 'hr_login' %}">HR LOGIN</a></button>
+            <button><a href="{% url 'user_login' %}" onclick="selectText()" >STAFF LOGIN</a></button>
+            <button><a href="{% url 'hod_login' %}" onclick="selectText()" >HOD LOGIN</a></button>
+            <button><a href="{% url 'hr_login' %}" onclick="selectText()" >HR LOGIN</a></button>
         </div>
     </div>
     <script src="script.js"></script>

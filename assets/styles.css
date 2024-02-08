@@ -142,11 +142,10 @@ button {
 }
 
 button a {
+    display: block;
     text-decoration: none;
     color: #fff;
-    padding: inherit;
-    padding-left: 180px;
-    padding-right: 180px;
+    height: auto;
 }
 
 button:hover {
