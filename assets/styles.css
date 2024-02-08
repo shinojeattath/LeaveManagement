@@ -144,6 +144,9 @@ button {
 button a {
     text-decoration: none;
     color: #fff;
+    padding: inherit;
+    padding-left: 180px;
+    padding-right: 180px;
 }
 
 button:hover {
