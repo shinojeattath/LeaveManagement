@@ -4,48 +4,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department Selection</title>
-    <link rel="stylesheet" href="{% static 'HRdepts.css'%}">
+    <link rel="icon" href="/CSS into 1/public/Uec Logo 2.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>My Profile</title>
+    <style>
+        /* Add CSS styles for the scrollable table */
+        .scrollable-table {
+            max-height: 300px; /* Set the max height for the table */
+            overflow-y: auto; /* Enable vertical scrollbar if content exceeds max height */
+        }
+    </style>
 </head>
 <body>
-
     <header>
-        <h1></h1>
+        <button class="button1">Signout</button>
     </header>
 
-    <div class="container">
-        <!-- Left side scrollable bar for departments -->
-        <div class="scrollable-bar hidden">
-            <div class="department-container">
-                <a href="#" onclick="showDepartment('Computer Science')">Computer Science</a>
-                <a href="#" onclick="showDepartment('Civil')">Civil</a>
-                <a href="#" onclick="showDepartment('Mechanical')">Mechanical</a>
-                <a href="#" onclick="showDepartment('Electrical')">Electrical</a>
-                <a href="#" onclick="showDepartment('Electronics')">Electronics</a>
-                <a href="#" onclick="showDepartment('ASH')">ASH</a>
-            </div>
-        </div>
+    <div class="container" id="requests-hr">
+        <h2>Computer Science</h2>
+        <div class="scrollable-table">
+            <table>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>View Profile</th>
+                </tr>
+                {% if applications %}
+                {% for i in applications %}
+                <tr>
+                    <td>{{i.employee_id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.leave_from}}</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                {% endfor %}
+                {% endif %}
 
-        <div class="content-container">
-            <div class="buttons-container">
-                <button class="department-button" onclick="showDepartment('Computer Science')">Computer Science</button>
-                <button class="department-button" onclick="showDepartment('Civil')">Civil</button>
-                <button class="department-button" onclick="showDepartment('Mechanical')">Mechanical</button>
-                <button class="department-button" onclick="showDepartment('Electrical')">Electrical</button>
-                <button class="department-button" onclick="showDepartment('Electronics')">Electronics</button>
-                <button class="department-button" onclick="showDepartment('ASH')">ASH</button>
-            </div>
-
-            <div id="staff-list" class="hidden">
-                <h2>Staff List</h2>
-                <ul>
-                    <!-- Staff list for selected department will be dynamically generated here -->
-                </ul>
-            </div>
+            </table>
         </div>
     </div>
-
-    <script src="{% static 'HRdepts.js' %}"></script>
-
+    <div class="container" id="requests-hr">
+        <!-- New Content -->
+        <h2>Department Name</h2>
+        <p>Number of Staffs: <strong>XX</strong></p>
+        <div class="scrollable-table">
+            <table>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>View Profile</th>
+                </tr>
+                <!-- Sample Row, add more rows dynamically -->
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="container" id="requests-hr">
+        <!-- New Content -->
+        <h2>Department Name</h2>
+        <p>Number of Staffs: <strong>XX</strong></p>
+        <div class="scrollable-table">
+            <table>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>View Profile</th>
+                </tr>
+                <!-- Sample Row, add more rows dynamically -->
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="container" id="requests-hr">
+        <!-- New Content -->
+        <h2>Department Name</h2>
+        <p>Number of Staffs: <strong>XX</strong></p>
+        <div class="scrollable-table">
+            <table>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>View Profile</th>
+                </tr>
+                <!-- Sample Row, add more rows dynamically -->
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="container" id="requests-hr">
+        <!-- New Content -->
+        <h2>Department Name</h2>
+        <p>Number of Staffs: <strong>XX</strong></p>
+        <div class="scrollable-table">
+            <table>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>View Profile</th>
+                </tr>
+                <!-- Sample Row, add more rows dynamically -->
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="container" id="requests-hr">
+        <!-- New Content -->
+        <h2>Department Name</h2>
+        <p>Number of Staffs: <strong>XX</strong></p>
+        <div class="scrollable-table">
+            <table>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>View Profile</th>
+                </tr>
+                <!-- Sample Row, add more rows dynamically -->
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>01-01-2023</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

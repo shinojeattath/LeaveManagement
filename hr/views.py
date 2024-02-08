@@ -28,9 +28,7 @@ def hr_login(request):
     return render(request, 'hr/login.html')
 
 def hr_homepage(request):
-    return render(request, 'hr/HRdept.html')
+    applications = Status_Leave_Application.objects.filter(status_of_request = 'APPROVED')
+    print(applications)
+    return render(request, 'hr/HRdept.html',{'applications': applications})
 
-def get_data(request):
-    data = Status_Leave_Application.objects.all()
-    json_data = serialize('json', data)
-    return JsonResponse({'data': json_data}, safe=False)
