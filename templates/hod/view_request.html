@@ -69,7 +69,7 @@
             <!-- Add more rows as needed -->
         </table>
         <div style="text-align: right;">
-            <button class="button" id="approve"><a href="#">Approve</a></button>
+            <button class="button" id="approve"><a href="{% url 'leave_approval' %}">Approve</a></button>
             <button class="button" id="reject"><a href="{% url 'reject_leave' %}">Reject</a></button>
             <button class="button"><a href="{% url 'staff_profile' %}">View Profile</a></button>
         </div>
