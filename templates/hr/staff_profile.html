@@ -1,0 +1,103 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load static from static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/CSS into 1/public/Uec Logo 2.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>{{detail.name}} Profile</title>
+</head>
+<body>
+    <header>
+        <img src="{% static 'Uec Logo 1.png' %}" alt="Logo" class="logo3">
+    </header>
+
+    
+
+    <div class="container">
+
+        <h2>EMPLOYEE ID: {{detail.employee_id}}</h2>
+    <div class="profile-info">
+        <div>
+            STAFF NAME: <strong>{{detail.name}}</strong>
+        </div>
+    </div>
+    <div class="profile-info">
+        <div>
+            DEPARTMENT: <strong>{{detail.department}}</strong>
+        </div>
+    </div>
+    <div class="profile-info">
+        <div>
+            DESIGNATION: <strong>{{detail.designation}}</strong>
+        </div>
+    </div>
+
+    <!-- Leave Details Table -->
+    <br><br>
+    <table>
+        <tr>
+            <th>Leave Nature</th>
+            <th>Balance Leave</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+        <tr>
+            <td>CL1</td>
+            <td>{{detail.cl1_bal}}</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>CL2</td>
+            <td>{{detail.cl2_bal}}</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>ML</td>
+            <td>{{detail.ML_bal}}</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>VL</td>
+            <td>{{detail.VL_bal}}</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>COMP_OFF</td>
+            <td>{{detail.comp_off}}</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>DL</td>
+            <td>{{detail.DL_bal}}</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>LoP</td>
+            <td>-</td> <!-- Increased width -->
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </table><br>
+  
+    </div>
+    <div class="info-text">
+        CL1 & CL2 = Casual Leave | MP = Medical Leave | VL = Vacation Leave | DL = Duty Leave
+    </div>
+ 
+</body>
+</html>
