@@ -18,7 +18,7 @@
         <h2>Leave Applications</h2>
     <div class="profile-info">
         <div>
-            STAFF NAME: <strong>{{ pending_applications.name }}</strong>
+            STAFF NAME: <strong>{{ status_of_approved_application.0.employee_id }}</strong>
         </div>
     </div>
     <!-- Leave Details Table -->
@@ -30,26 +30,28 @@
             <th>Start Date</th>
             <th>Time of Request</th>
             <th>Status</th>
+            
         </tr>
+
         {% if pending_applications %}
         {% for i in pending_applications %}
-            
+           
                 <tr>
                     <td>{{i.nature_of_leave}}</td>
                     <td>{{i.no_of_days}}</td>
                     <td>{{i.leave_from}}</td>
                     <td>{{i.time_of_request}}</td>
+                    <td >{{ i.status_of_request }}</td>
                     
-                    <td>{{i.status_of_request}}</td>
                 </tr>
-           
-            
+        
         {% endfor %}
     {% endif %}
-    
-    {% if status_of_approved_applications %}
-        {% for i in status_of_approved_applications %}
-           
+
+
+        {% if status_of_approved_application %}
+        {% for i in status_of_approved_application %}
+            
                 <tr>
                     <td>{{i.nature_of_leave}}</td>
                     <td>{{i.no_of_days}}</td>
@@ -61,9 +63,13 @@
                     <td style="color: red;">{{ i.status_of_request }}</td>
                     {% endif %}
                 </tr>
-        
+                </tr>
+           
+            
         {% endfor %}
     {% endif %}
+    
+    
         <!-- Add more rows as needed -->
     <script src="script.js">
     
