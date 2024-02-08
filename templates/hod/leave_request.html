@@ -1,174 +1,49 @@
- {% load static from static %}
-
+{% load static from static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leave Approval System</title>
-    <link rel="stylesheet" href="{% static 'stylesreq.css' %}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <link rel="icon" href="/CSS into 1/public/Uec Logo 2.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Incoming Requests</title>
 </head>
 <body>
-
-<header>
-    <strong><a href="#" class="active">Home</a>
-    </strong>
-    <strong><a href="#" class="active">Logout</a>
-</header>
-
-<div class="content-container">
-    <div class="leave-container">
-        <div class="leave-heading">New Leave Request</div>
-        {% for leave_application in leave_applications %}
-            <div class="leave-request" onclick="toggleDetails(this)">
-                <div>           
-                    <p>Name: <strong>{{ leave_application.name }}</strong></p>
-                    <p style="display: none;">{{ leave_application.department}}</p>
-                    <p style="display: none;">{{leave_application.no_of_days}}</p>
-                    <p>{{ leave_application.nature_of_leave}}</p>
-                    <p>Leave From: {{leave_application.leave_from}}</p>
-                    <p style="display: none;"><strong>Reason: </strong> {{ leave_application.reason}}</p>
-                    <p style="display: none;"><strong>Time of Request:</strong>{{leave_application.time_of_request}}</p>
-                    
-                    <p style="display: none;"><strong></strong>{{leave_application.alt_class_sem}}</p>
-                    <p style="display: none;"><strong></strong>{{leave_application.alt_hour}}</p>
-                    <p style="display: none;"><strong></strong>{{leave_application.subject}}</p>
-                    <p style="display: none;"><strong></strong>{{leave_application.alt_assigned_teacher}}</p>
-                    <p style="display: none;"><strong></strong>{{leave_application.alt_linways_assigned}}</p>
-                    <p style="display: none;">{{leave_application.employee_id}}</p>
-
-                    
-
+    <header>
+        <button class="button-back">Back</button>
+        <button class="button1">Signout</button>
+    </header>
+    <div class="container">
+        <div class="inbox">
+            <h2>Incoming Requests</h2>
+            
+        </div>
+        <div class="requests">
+            {% for data in leave_applications %}
+            <hr>
+            <div class="request">
+                <div class="info">
+                    <p>Staff Name: <strong>{{data.name}}</strong></p>
+                    <p>Department: <strong>{{data.department}}</strong></p>
+                    <p>Request Time: <strong>{{data.time_of_request}}</strong></p>
+                </div>
+                <div class="actions">
+                    <button onclick="viewRequest('{{data.employee_id}}')" id="view">View</button>
                 </div>
             </div>
-        {% endfor %}
-
-
-        <!-- Add more leave requests here -->
+            
+            {% endfor %}
+            <!-- Additional emails can be added here -->
+        </div>
     </div>
-
-    <div class="leave-details">
-
-        <p><strong >Name:</strong> John Doe</p>
-        <p><strong>Branch:</strong> XYZ Branch</p>
-        <p><strong>Designation:</strong> Manager</p>
-        <p><strong>Reason for Leave:</strong> Family vacation</p>   
-        <p><strong>Leave Type:</strong> Paid Leave</p>
-        <p><strong>Time of Request:</strong> 2023-10-15 10:30 AM</p>
-        <button class="approve-btn" onclick="approveRequest()" >Approve</button>
-        <button class="reject-btn" onclick="rejectRequest()">Reject</button>
-        <button class="profile-btn" onclick="profile()">View Profile</button>
-    </div>
-</div>
-
-<script>
-
-
-
-
-
-let leaveDetails;  // Declare a variable to store leave details globally
-
-function toggleDetails(request) {
-    const details = document.querySelector('.leave-details');
-
-    const leaveName = request.querySelector('strong').innerText;
-    const department = request.querySelector('p:nth-child(2)').innerText;
-    const leaveReason = request.querySelector('p:nth-child(6)').innerText;
-    const no_of_days = request.querySelector('p:nth-child(3)').innerText;
-    const timeOfRequest = request.querySelector('p:nth-child(7)').innerText;
-    const LeaveFrom  = request.querySelector('p:nth-child(5)').innerText;
-    const leaveType = request.querySelector('p:nth-child(4)').innerText;
-
-    const alt_sem = request.querySelector('p:nth-child(8)').innerHTML
-    const alt_hour = request.querySelector('p:nth-child(9)').innerHTML
-    const alt_subject = request.querySelector('p:nth-child(10)').innerHTML
-    const alt_assigned_teacher = request.querySelector('p:nth-child(11)').innerHTML
-    const alt_linways_assigned = request.querySelector('p:nth-child(12)').innerHTML
-    const employee_id = request.querySelector('p:nth-child(13)').innerText
-
-    // Store leave details in the global variable
-    leaveDetails = {
-        leaveName: leaveName,
-        department: department,
-        leaveReason: leaveReason,
-        no_of_days: no_of_days,
-        timeOfRequest: timeOfRequest,
-        LeaveFrom: LeaveFrom,
-        leaveType: leaveType,
-        alt_sem: alt_sem,
-        alt_hour: alt_hour,
-        alt_subject: alt_subject,
-        alt_assigned_teacher: alt_assigned_teacher,
-        alt_linways_assigned: alt_linways_assigned,
-        employee_id: employee_id
-    };
-
-    details.innerHTML = `
-        <p><strong>Name:</strong> ${leaveName}</p>
-        <p><strong>Department:</strong> ${department}</p>
-        <p><strong>Leave From:</strong> ${LeaveFrom.slice(11)}</p>
-        <p><strong>Number of Days: </strong> ${no_of_days}</p>
-        <p><strong>Leave Type:</strong> ${leaveType}</p>
-        <p><strong>Reason:</strong> ${leaveReason.slice(7)}</p>
-        <p><strong>Time of Request</strong> ${timeOfRequest.slice(15)}</p>
-
-        <p style="text-decoration: underline; font-weight: bold; color: red"><strong>Alternate Arrangements</strong></p>
-        
-        <p><strong>Sem and Class:</strong> ${alt_sem}</p>
-        <p><strong>Hours:</strong> ${alt_hour}</p>
-        <p><strong>Subject:</strong> ${alt_subject}</p>
-        <p><strong>Assigned Teacher:</strong> ${alt_assigned_teacher}</p>
-        <p><strong>Linways Assigned:</strong> ${alt_linways_assigned}</p>
-
-        <button class="approve-btn" onclick="approveRequest()">Approve</button>
-        <button class="reject-btn" onclick="rejectRequest()">Reject</button>
-    `;
-
-    details.style.display = 'block';
-}
-
-function approveRequest() { 
-    // Access leaveName from the global variable
-    const employee_id = leaveDetails.employee_id;
-    const no_of_days = leaveDetails.no_of_days;
-    const department = leaveDetails.department;
-    const leaveType = leaveDetails.leaveType;
-    const name = leaveDetails.leaveName;
-    const leaveFrom = leaveDetails.LeaveFrom
-
+    <script>
     
-    console.log(employee_id);
-    // Making an AJAX request to a Django view
+    function viewRequest(employee_id) {
+        
     $.ajax({
         type: "POST",
-        url: "{% url 'leave_approval' %}",
-        data: {
-            name: name,
-            leaveFrom: leaveFrom,
-            employee_id: employee_id,
-            no_of_days: no_of_days,
-            department: department,
-            leaveType: leaveType,
-            csrfmiddlewaretoken: '{{ csrf_token }}'
-        },
-        success: function(response) {
-            console.log("Data sent successfully");
-            // Handle the response from the Django view if needed
-        },
-        error: function(error) {
-            console.error("Error sending data:", error);
-        }
-    });
-}
-
-function rejectRequest() {
-    const employee_id = leaveDetails.employee_id;
-    $.ajax({
-        type: "POST",
-        url: "{% url 'reject_leave' %}",
+        url: "{% url 'data_from_ajax' %}",
         data: {
             employee_id: employee_id,
             csrfmiddlewaretoken: '{{ csrf_token }}'
@@ -176,23 +51,19 @@ function rejectRequest() {
         success: function(response) {
             console.log("Data sent successfully");
             // Handle the response from the Django view if needed
+            window.location.href = "{% url 'view_request' %}";
         },
         error: function(error) {
             console.error("Error sending data:", error);
+            console.error("Error:", error);
+            console.error("Status:", status);
+            console.error("XHR:", xhr);
         }
     });
 
-}
+        
+    }
 
-function logout() {
-    alert('Logout');
-    // Implement your logout logic here
-}
-
-
-
-
-</script>
-
+    </script>
 </body>
 </html>

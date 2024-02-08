@@ -1,0 +1,79 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/CSS into 1/public/Uec Logo 2.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Request</title>
+</head>
+<body>
+    <header>
+        <button class="button-back">Back</button>
+    </header>
+    <div class="container">
+        {% for data in leave_applications %}
+        <h2>Employee ID: {{data.employee_id}}</h2>
+        <div class="profile-info">
+            <div>
+                Name: <strong>{{data.name}}</strong>
+            </div>
+        </div>
+        <div class="profile-info">
+            <div>
+                Department: <strong>{{data.department}}</strong>
+            </div>
+        </div>
+
+        <!-- Leave Details Table -->
+        <br><br>
+        <table>
+            <tr>
+                <th>Nature of Leave</th>
+                <th>Number of Days</th>
+                <th>Leave From</th>
+            </tr>
+            <tr>
+                <td>{{data.nature_of_leave}}</td>
+                <td>{{data.no_of_days}} day(s)</td>
+                <td>{{data.leave_from}}</td>
+            </tr>
+
+        </table><br>
+
+        <div class="reason-for-leave">
+            <h3>Reason for Leave:</h3>
+            <p>{{data.reason}}</p>
+        </div>
+        {%  endfor %}
+        <hr>
+        <h2 id="altarr">Alternative Arrangements</h2>
+
+        <table id="alternativeArrangementTable">
+            <tr>
+                <th>Hour</th>
+                <th>Sem</th>
+                <th>Class</th>
+                <th>Teacher</th>
+            </tr>
+            <tr>
+            {% for alt in arrangements %}
+                <td>{{alt.alt_hour}}</td>
+                <td>{{alt.alt_semester}}</td>
+                <td>{{alt.alt_class}}</td>
+                <td>{{alt.alt_assigned_teacher}}</td>
+   
+            </tr>
+            {% endfor %}
+            <!-- Add more rows as needed -->
+        </table>
+        <div style="text-align: right;">
+            <button class="button" id="approve"><a href="#">Approve</a></button>
+            <button class="button" id="reject"><a href="{% url 'reject_leave' %}">Reject</a></button>
+            <button class="button"><a href="{% url 'staff_profile' %}">View Profile</a></button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

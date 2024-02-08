@@ -17,27 +17,12 @@
 <body>
     <header>
         <img src="{% static 'Uec Logo 1.png' %}" alt="Logo" class="logo3">
-        <button class="button1" onclick="signout()">Signout</button>
     </header>
 
     
 
     <div class="container">
-    {% if messages %}
-    {% for message in messages %}
-        {% if message.tags == 'success' %}
-            <div class="alert alert-success alert-dismissible fade show mx-auto text-center" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% elif message.tags == 'warning' %}
-            <div class="alert alert-warning alert-dismissible fade show mx-auto text-center" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
+
         <h2>EMPLOYEE ID: {{detail.employee_id}}</h2>
     <div class="profile-info">
         <div>
@@ -108,27 +93,11 @@
         </tr>
         <!-- Add more rows as needed -->
     </table><br>
-    <div style="text-align: right;">
-        <button class="button1" onclick="newApplication()">New application</button>
-        <button class="button1" onclick="viewApplication()">View Applications</button>
-    </div>
+  
     </div>
     <div class="info-text">
         CL1 & CL2 = Casual Leave | MP = Medical Leave | VL = Vacation Leave | DL = Duty Leave
     </div>
-    <script>
-        function viewApplication()
-        {
-            window.location.href = "{% url 'show_leave_application' %}";
-        }
-        function newApplication()
-        {
-            window.location.href = "{% url 'new_leave_application' %}";
-        }
-        function signout()
-        {
-            window.location.href = "{% url 'signout' %}";
-        }
-    </script>
+ 
 </body>
 </html>

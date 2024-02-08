@@ -1,0 +1,145 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="public/Uec Logo 2.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>New Application</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="signin">
+            <p>Leave Application</p>
+        </div>
+    </div>
+
+    <div class="container" id="alt-arrangements">
+        <div class="signin">
+            <p>Alternative Arrangements</p>
+        </div>
+        <form action="" method="post">
+            {% csrf_token %}
+        <table id="altArrangements">
+            <thead>
+                <tr>
+                    <th>Hour</th>
+                    <th>Class</th>
+                    <th>Semester</th>
+                    <th>Assigned Teacher</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="alt_hour1" value="1" required=""></td>
+                    <td><input type="text" name="alt_class1" required=""></td>
+                    <td><input type="text" name="alt_semester1" required=""></td>    
+                    <td><input type="text" name="alt_assigned_teacher1" required=""></td>
+                    
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td><input type="text" name="alt_hour2" value="2" required=""></td>
+                    <td><input type="text" name="alt_class2" required=""></td>
+                    <td><input type="text" name="alt_semester2" required=""></td>    
+                    <td><input type="text" name="alt_assigned_teacher2" required=""></td>
+                    
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td><input type="text" name="alt_hour3" value="3" required=""></td>
+                    <td><input type="text" name="alt_class3" required=""></td>
+                    <td><input type="text" name="alt_semester3" required=""></td>    
+                    <td><input type="text" name="alt_assigned_teacher3" required=""></td>
+                    
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td><input type="text" name="alt_hour4" value="4" required=""></td>
+                    <td><input type="text" name="alt_class4" required=""></td>
+                    <td><input type="text" name="alt_semester4" required=""></td>    
+                    <td><input type="text" name="alt_assigned_teacher4" required=""></td>
+                    
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td><input type="text" name="alt_hour5" value="5" required=""></td>
+                    <td><input type="text" name="alt_class5" required=""></td>
+                    <td><input type="text" name="alt_semester5" required=""></td>    
+                    <td><input type="text" name="alt_assigned_teacher5" required=""></td>
+                    
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td><input type="text" name="alt_hour6" value="6" required=""></td>
+                    <td><input type="text" name="alt_class6" required=""></td>
+                    <td><input type="text" name="alt_semester6" required=""></td>    
+                    <td><input type="text" name="alt_assigned_teacher6" required=""></td>
+                    
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td><input type="text" name="alt_hour7" value="7" required=""></td>
+                    <td><input type="text" name="alt_class7" required=""></td>
+                    <td><input type="text" name="alt_semester7" required=""></td>    
+                    <td><input type="text" name="alt_assigned_teacher7" required=""></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        <button class="add" onclick="addRow()">  +  </button>
+        <div class="submit">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var header = document.querySelector('header');
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 50) {
+                header.classList.add('blurry-white-header');
+            } else {
+                header.classList.remove('blurry-white-header');
+            }
+        });
+
+        function addRow() {
+    var table = document.getElementById("altArrangements").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow(table.rows.length);
+    var cells = [];
+
+    var rowCount = table.rows.length - 1;
+    
+    cells.push(newRow.insertCell(0));
+    cells[0].innerHTML = "<input type='text' name='alt_hour_" + rowCount + "' required=''>";
+
+    cells.push(newRow.insertCell(1));
+    cells[1].innerHTML = "<input type='text' name='alt_class_" + rowCount + "' required=''>";
+
+    cells.push(newRow.insertCell(2));
+    cells[2].innerHTML = "<input type='text' name='alt_semester_" + rowCount + "' required=''>";
+
+    cells.push(newRow.insertCell(3));
+    cells[3].innerHTML = "<input type='text' name='alt_assigned_teacher_" + rowCount + "' required=''>";
+}
+
+    </script>
+</body>
+</html>
