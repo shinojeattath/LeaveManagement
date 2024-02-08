@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -32,3 +32,22 @@ def hr_homepage(request):
     print(applications)
     return render(request, 'hr/HRdept.html',{'applications': applications})
 
+def staff_profile_hr(request):
+    employee_id = request.session.get('staff_employee_id_hr')
+    print(employee_id)
+    details = Staff_Details.objects.filter(employee_id = employee_id)
+    if details.exists():
+        detail = details[0]
+    else:
+        detail = None
+    return render(request, 'hr/staff_profile.html', {'detail': detail})
+
+def data_from_ajax_hr(request):
+    if request.method == 'POST':
+        # Extract the employee ID from the POST data
+        employee_id = request.POST.get('employee_id')
+        request.session['staff_employee_id_hr'] = employee_id
+        print("eaefsas")
+        print(employee_id)
+        return redirect('staff_profile_hr')
+    
