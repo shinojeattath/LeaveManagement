@@ -73,6 +73,11 @@ width: 100%;
 margin-top: 20px;
 margin-bottom: 10px;
 }
+
+#signup-container input[type="text"], input[type="password"]{
+  color: white;
+}
+
 #signup-input{
 background-color: #f2f2f21a;
 border: 1px solid #cccccc00;
