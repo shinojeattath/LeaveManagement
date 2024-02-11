@@ -74,7 +74,7 @@ margin-top: 20px;
 margin-bottom: 10px;
 }
 
-#signup-container input[type="text"], input[type="password"]{
+#signup-container input[type="text"], input[type="password"], input[type="email"]{
   color: white;
 }
 
