@@ -175,6 +175,7 @@ def new_leave_application_2(request):
     return render(request, 'staff/new_leave_application_2.html',{'detail': detail})
 
 def signup(request):
+
     if request.method == "POST":
         employeeId = request.POST['employeeId']
         ename = request.POST['name']

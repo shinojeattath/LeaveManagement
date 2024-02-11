@@ -23,7 +23,7 @@
     </header>
 
     <div class="container" id="requests-hr">
-        <h2>Computer Science</h2>
+        <h2>Computer Science</h2>  
         <div class="scrollable-table">
             <table>
                 <tr>
@@ -34,12 +34,14 @@
                 </tr>
                 {% if applications %}
                 {% for i in applications %}
+                {% if i.department == 'CSE' %}
                 <tr>
                     <td>{{i.employee_id}}</td>
                     <td>{{i.name}}</td>
                     <td>{{i.leave_from}}</td>
                     <td><button onclick="ShowProfile('{{i.employee_id}}')">View Profile</button></td>
                 </tr>
+                {% endif %}
                 {% endfor %}
                 {% endif %}
 
@@ -48,7 +50,7 @@
     </div>
     <div class="container" id="requests-hr">
         <!-- New Content -->
-        <h2>Department Name</h2>
+        <h2>EEE</h2>
         <p>Number of Staffs: <strong>XX</strong></p>
         <div class="scrollable-table">
             <table>
@@ -59,30 +61,25 @@
                     <th>View Profile</th>
                 </tr>
                 <!-- Sample Row, add more rows dynamically -->
+                {% if applications %}
+                {% for i in applications %}
+                {% if i.department == 'EEE' %}
                 <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
+                    <td>{{i.employee_id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.leave_from}}</td>
+                    <td><button onclick="ShowProfile('{{i.employee_id}}')">View Profile</button></td>
                 </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
-                </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
-                </tr>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+               
             </table>
         </div>
     </div>
     <div class="container" id="requests-hr">
         <!-- New Content -->
-        <h2>Department Name</h2>
+        <h2>ECE</h2>
         <p>Number of Staffs: <strong>XX</strong></p>
         <div class="scrollable-table">
             <table>
@@ -93,30 +90,25 @@
                     <th>View Profile</th>
                 </tr>
                 <!-- Sample Row, add more rows dynamically -->
+                {% if applications %}
+                {% for i in applications %}
+                {% if i.department == 'ECE' %}
                 <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
+                    <td>{{i.employee_id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.leave_from}}</td>
+                    <td><button onclick="ShowProfile('{{i.employee_id}}')">View Profile</button></td>
                 </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
-                </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
-                </tr>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                
             </table>
         </div>
     </div>
     <div class="container" id="requests-hr">
         <!-- New Content -->
-        <h2>Department Name</h2>
+        <h2>CE</h2>
         <p>Number of Staffs: <strong>XX</strong></p>
         <div class="scrollable-table">
             <table>
@@ -127,30 +119,27 @@
                     <th>View Profile</th>
                 </tr>
                 <!-- Sample Row, add more rows dynamically -->
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
                 </tr>
+                <!-- Sample Row, add more rows dynamically -->
+                {% if applications %}
+                {% for i in applications %}
+                {% if i.department == 'ECE' %}
                 <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
+                    <td>{{i.employee_id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.leave_from}}</td>
+                    <td><button onclick="ShowProfile('{{i.employee_id}}')">View Profile</button></td>
                 </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
-                </tr>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                
             </table>
         </div>
     </div>
     <div class="container" id="requests-hr">
         <!-- New Content -->
-        <h2>Department Name</h2>
+        <h2>ME</h2>
         <p>Number of Staffs: <strong>XX</strong></p>
         <div class="scrollable-table">
             <table>
@@ -161,30 +150,27 @@
                     <th>View Profile</th>
                 </tr>
                 <!-- Sample Row, add more rows dynamically -->
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
                 </tr>
+                <!-- Sample Row, add more rows dynamically -->
+                {% if applications %}
+                {% for i in applications %}
+                {% if i.department == 'ECE' %}
                 <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
+                    <td>{{i.employee_id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.leave_from}}</td>
+                    <td><button onclick="ShowProfile('{{i.employee_id}}')">View Profile</button></td>
                 </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
-                </tr>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                
             </table>
         </div>
     </div>
     <div class="container" id="requests-hr">
         <!-- New Content -->
-        <h2>Department Name</h2>
+        <h2>ASH</h2>
         <p>Number of Staffs: <strong>XX</strong></p>
         <div class="scrollable-table">
             <table>
@@ -195,24 +181,20 @@
                     <th>View Profile</th>
                 </tr>
                 <!-- Sample Row, add more rows dynamically -->
+                <!-- Sample Row, add more rows dynamically -->
+                {% if applications %}
+                {% for i in applications %}
+                {% if i.department == 'ECE' %}
                 <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
+                    <td>{{i.employee_id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.leave_from}}</td>
+                    <td><button onclick="ShowProfile('{{i.employee_id}}')">View Profile</button></td>
                 </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
-                </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>01-01-2023</td>
-                    <td><button>View Profile</button></td>
-                </tr>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                
             </table>
         </div>
     </div>
