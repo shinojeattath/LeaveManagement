@@ -17,11 +17,9 @@
     <div class="hod-container">
         <div class="inbox">
             <h2>Requests</h2>
-            
         </div>
         <div class="requests">
             {% for data in leave_applications %}
-            <hr>
             <div class="request">
                 <div class="info">
                     <p>Staff Name: <strong>{{data.name}}</strong></p>
@@ -32,6 +30,7 @@
                     <button onclick="viewRequest('{{data.employee_id}}')" id="view">View</button>
                 </div>
             </div>
+            <hr>
             
             {% endfor %}
             <!-- Additional emails can be added here -->
