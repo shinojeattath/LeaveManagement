@@ -65,7 +65,7 @@ def profile(request):
 @login_required
 def signout(request):
     logout(request)
-    return redirect('user_login')
+    return redirect('homepage')
 
 @login_required
 def new_leave_application(request):
@@ -182,11 +182,12 @@ def new_leave_application_2(request):
                 leave = get_object_or_404(Leave_Application, employee_id = employee_id)
                 leave.submitted = True
                 leave.save()
-                messages.success(request, "Your Application submitted successfully")
+            
 
             else:
                 # Handle missing keys
                 print(f"Keys for row {i} are missing")
+        messages.success(request, "Your Application submitted successfully")
         return redirect('profile')
 
 
