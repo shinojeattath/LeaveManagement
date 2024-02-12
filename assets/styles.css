@@ -113,9 +113,12 @@ margin-bottom: -60px;
 }
 
 #alt-arrangements{
-margin-top: -35px;
+margin-top: 65px;
 }
 
+#alternative-submit-button{
+  margin-top: 20px;
+}
 #leave-submit{
 margin-top: -35px;
 }
