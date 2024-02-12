@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <button class="button-back">Back</button>
+        <button class="button-back" onclick="goBack()">Back</button>
     </header>
     <div class="container">
         {% for data in leave_applications %}
@@ -74,6 +74,10 @@
             <button class="button"><a href="{% url 'staff_profile' %}">View Profile</a></button>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+          }
+    </script>
 </body>
 </html>
