@@ -20,7 +20,7 @@
 <body>
     <header>
         <img src="{% static 'Uec Logo 1.png' %}" alt="Logo" class="logo3">
-        <button class="button1" onclick="signout()">Signout</button>
+        <button class="button1" onclick="signoutFunction()">Signout</button>
     </header>
 
     <div class="container" id="requests-hr">
@@ -223,6 +223,9 @@
         }
     });
 
+    }
+    function signoutFunction(){
+        window.location.href="{% url 'signout' %}"
     }
     
     </script>
