@@ -32,6 +32,7 @@ class Leave_Application(models.Model):
     status_of_request = models.CharField(max_length=10, default="PENDING")
     time_of_request = models.DateTimeField(null=True)
     alt_linways_assigned = models.CharField(max_length=5, null=True)
+    submitted = models.BooleanField(default=False)
 
 
 class AlternateArrangements(models.Model):

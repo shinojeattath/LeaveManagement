@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 #from .models import Details, Leave_Application, Approved_Leave_Application
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -7,6 +7,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.utils import timezone
 from .models import Staff_Details, Leave_Application, Status_Leave_Application, AlternateArrangements
+from django.db import transaction
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from .decorators import staff_required
+
 
 # Create your views here.
 def homepage(request):
@@ -37,6 +42,7 @@ def user_login(request):
     return render(request, 'staff/login.html')
 
 @login_required
+#@staff_required
 def profile(request):
     emp_id = request.session.get('username', "NONE")
     details = Staff_Details.objects.filter(employee_id = emp_id)
@@ -45,6 +51,14 @@ def profile(request):
     else:
         detail = None
         print(detail.emp_id)
+    leave = Leave_Application.objects.filter(employee_id = emp_id)
+    if leave.exists():
+        leave2 = leave[0]
+        if leave2.submitted == False:
+            leave2.delete()
+
+    else:
+        leave2 = None
 
     return render(request, 'staff/profile.html', {'detail': detail})
 
@@ -56,7 +70,7 @@ def signout(request):
 @login_required
 def new_leave_application(request):
     username = request.session.get('username', "NONE")
-    do_exist = Leave_Application.objects.filter(employee_id = username)
+    do_exist = AlternateArrangements.objects.filter(employee_id = username)
     print(username)
 
     if do_exist.exists():
@@ -111,11 +125,11 @@ def new_leave_application(request):
                 
             )
             leave_application.save()
-            messages.success(request, "Your Application submitted successfully")
             return redirect('new_leave_application_2')
     return render(request, 'staff/new_leave_application.html',{'detail': detail})
 
 @login_required
+@transaction.atomic
 def show_leave_application(request):
     employee_id = request.session.get('username', "NONE")
     print(employee_id)
@@ -126,6 +140,8 @@ def show_leave_application(request):
         print(i.status_of_request)
     
     return render(request, 'staff/show_leave_applications.html', {'status_of_approved_application': status_of_approved_applications, 'pending_applications': pending_applications})    
+
+@transaction.atomic
 def new_leave_application_2(request):
     username = request.session.get('username', "NONE")
     print(username)
@@ -158,10 +174,16 @@ def new_leave_application_2(request):
                     alt_class=alt_class1,
                     alt_semester=semester1,
                     alt_hour=hour1,
-                    alt_assigned_teacher=teacher1
+                    alt_assigned_teacher=teacher1,
                 )
-                arrangements.save()
                 
+                arrangements.save()
+
+                leave = get_object_or_404(Leave_Application, employee_id = employee_id)
+                leave.submitted = True
+                leave.save()
+                messages.success(request, "Your Application submitted successfully")
+
             else:
                 # Handle missing keys
                 print(f"Keys for row {i} are missing")
@@ -207,3 +229,4 @@ def signup(request):
 
         return redirect('signup')  
     return render(request, 'staff/signup.html')
+
