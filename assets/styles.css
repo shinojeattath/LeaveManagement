@@ -55,6 +55,11 @@ body {
   margin-bottom: 50px;
 }
 
+.scrollable-table {
+  max-height: 300px; /* Set the max height for the table */
+  overflow-y: auto; /* Enable vertical scrollbar if content exceeds max height */
+}
+
 #signup-body{
 background-color: #0F1319;
 }
@@ -338,11 +343,11 @@ th, td {
 
 th {
   background-color: #ffffff;
-  color: #666;
+  color: #666666;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #e0edff;
 }
 .info-text {
   font-size: 14px;

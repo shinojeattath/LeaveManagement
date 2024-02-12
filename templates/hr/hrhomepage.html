@@ -7,17 +7,11 @@
     <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% url 'styles.css' %}">
     <title>My Profile</title>
-    <style>
-        /* Add CSS styles for the scrollable table */
-        .scrollable-table {
-            max-height: 300px; /* Set the max height for the table */
-            overflow-y: auto; /* Enable vertical scrollbar if content exceeds max height */
-        }
-    </style>
 </head>
 <body>
     <header>
-        <button class="button1">Signout</button>
+        <img src="{% static 'Uec Logo 1.png' %}" alt="Logo" class="logo3">
+        <button class="button1" onclick="signout()">Signout</button>
     </header>
 
     <div class="container" id="requests-hr">
