@@ -11,7 +11,6 @@
 <body>
     <header>
         <button class="button-back" onclick="backFunction()">Back</button>
-        <button class="button1" onclick="signoutFunction()">Signout</button>
     </header>
     <div class="container">
         <div class="signin">
@@ -88,10 +87,6 @@ function backFunction()
             window.location.href="{% url 'profile' %}"
         }
 
-        function signoutFucntion()
-        {
-            window.location.href="{% url 'signout' %}"
-        }
         
     </script>
 </body>
