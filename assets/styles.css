@@ -55,9 +55,26 @@ body {
   margin-bottom: 50px;
 }
 
+.hod-container{
+  background-color: rgb(255, 255, 255);
+  border: .5px solid #3f3f3f38;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 70%;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 100px;
+  margin-left: 20px auto;
+  margin-right: 20px auto;
+  margin-bottom: 50px;
+}
+
 .scrollable-table {
-  max-height: 300px; /* Set the max height for the table */
-  overflow-y: auto; /* Enable vertical scrollbar if content exceeds max height */
+  max-height: 300x;
+  overflow-y:  auto;
+  padding-top: 100px;
+  margin-top: -60px;
 }
 
 #signup-body{
@@ -91,6 +108,10 @@ border: 1px solid #cccccc00;
 #requests-hr{
 margin-bottom: -60px;
 }
+#requests-hr2{
+  margin-bottom: 50px;
+}
+
 #alt-arrangements{
 margin-top: -35px;
 }
@@ -453,7 +474,9 @@ background-position: center;
   .container {
       width: 90%;
     }
-  
+    .hod-container{
+      width: 90%;
+    }
     .logo {
       max-width: 150px;
     }

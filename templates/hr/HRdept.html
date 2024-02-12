@@ -10,11 +10,6 @@
 
     <title>Department Details</title>
     <style>
-        /* Add CSS styles for the scrollable table */
-        .scrollable-table {
-            max-height: 300px; /* Set the max height for the table */
-            overflow-y: auto; /* Enable vertical scrollbar if content exceeds max height */
-        }
     </style>
 </head>
 <body>
@@ -51,7 +46,7 @@
     </div>
     <div class="container" id="requests-hr">
         <!-- New Content -->
-        <h2>EEE</h2>
+        <h2>Electrical and Electronics Engineering</h2>
         <p>Number of Staffs: <strong>XX</strong></p>
         <div class="scrollable-table">
             <table>
@@ -80,7 +75,7 @@
     </div>
     <div class="container" id="requests-hr">
         <!-- New Content -->
-        <h2>ECE</h2>
+        <h2>Electronics and Communication Engineering</h2>
         <p>Number of Staffs: <strong>XX</strong></p>
         <div class="scrollable-table">
             <table>
@@ -109,38 +104,7 @@
     </div>
     <div class="container" id="requests-hr">
         <!-- New Content -->
-        <h2>CE</h2>
-        <p>Number of Staffs: <strong>XX</strong></p>
-        <div class="scrollable-table">
-            <table>
-                <tr>
-                    <th>Employee ID</th>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>View Profile</th>
-                </tr>
-                <!-- Sample Row, add more rows dynamically -->
-                </tr>
-                <!-- Sample Row, add more rows dynamically -->
-                {% if applications %}
-                {% for i in applications %}
-                {% if i.department == 'ECE' %}
-                <tr>
-                    <td>{{i.employee_id}}</td>
-                    <td>{{i.name}}</td>
-                    <td>{{i.leave_from}}</td>
-                    <td><button onclick="ShowProfile('{{i.employee_id}}')">View Profile</button></td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-                {% endif %}
-                
-            </table>
-        </div>
-    </div>
-    <div class="container" id="requests-hr">
-        <!-- New Content -->
-        <h2>ME</h2>
+        <h2>Civil Engineering</h2>
         <p>Number of Staffs: <strong>XX</strong></p>
         <div class="scrollable-table">
             <table>
@@ -171,7 +135,38 @@
     </div>
     <div class="container" id="requests-hr">
         <!-- New Content -->
-        <h2>ASH</h2>
+        <h2>Mechanical Engineering</h2>
+        <p>Number of Staffs: <strong>XX</strong></p>
+        <div class="scrollable-table">
+            <table>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>View Profile</th>
+                </tr>
+                <!-- Sample Row, add more rows dynamically -->
+                </tr>
+                <!-- Sample Row, add more rows dynamically -->
+                {% if applications %}
+                {% for i in applications %}
+                {% if i.department == 'ECE' %}
+                <tr>
+                    <td>{{i.employee_id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.leave_from}}</td>
+                    <td><button onclick="ShowProfile('{{i.employee_id}}')">View Profile</button></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                
+            </table>
+        </div>
+    </div>
+    <div class="container" id="requests-hr2">
+        <!-- New Content -->
+        <h2>Applied Science and Humanities</h2>
         <p>Number of Staffs: <strong>XX</strong></p>
         <div class="scrollable-table">
             <table>
