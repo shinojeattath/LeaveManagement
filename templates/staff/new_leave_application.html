@@ -10,8 +10,8 @@
 </head>
 <body>
     <header>
-        <button class="button-back">Back</button>
-        <button class="button1">Signout</button>
+        <button class="button-back" onclick="backFunction()">Back</button>
+        <button class="button1" onclick="signoutFunction()">Signout</button>
     </header>
     <div class="container">
         <div class="signin">
@@ -81,5 +81,18 @@
             </div>
         </form>
     </div>
+    <script>
+
+function backFunction()
+        {
+            window.location.href="{% url 'profile' %}"
+        }
+
+        function signoutFucntion()
+        {
+            window.location.href="{% url 'signout' %}"
+        }
+        
+    </script>
 </body>
 </html>

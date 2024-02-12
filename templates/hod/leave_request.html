@@ -12,7 +12,7 @@
 <body>
     <header>
         <button class="button-back">Back</button>
-        <button class="button1">Signout</button>
+        <button class="button1" onclick="signoutFunction()">Signout</button>
     </header>
     <div class="container">
         <div class="inbox">
@@ -62,6 +62,10 @@
     });
 
         
+    }
+
+    function signoutFunction(){
+        window.location.href="{% url 'signout' %}";
     }
 
     </script>
