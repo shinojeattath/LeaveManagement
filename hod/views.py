@@ -9,6 +9,7 @@ from staff.models import Staff_Details, Leave_Application, Status_Leave_Applicat
 from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.conf import settings
+from staff.decorators import hod_required
 
 
 
@@ -31,6 +32,8 @@ def hod_login(request):
             messages.error(request, "Invalid username or Password")
     return render(request, 'hod/login.html')
 
+@login_required
+@hod_required
 def leave_request(request):
     employee_id = request.session.get('username')
     profile = get_object_or_404(Staff_Details, employee_id = employee_id)
@@ -57,6 +60,8 @@ def leave_approval(request):
     
     leave_application = get_object_or_404(Staff_Details, employee_id = employee_id)
     approved_leaves = get_object_or_404(Leave_Application, employee_id = employee_id)
+    alternate = AlternateArrangements.objects.filter(employee_id = employee_id)
+
     typeOfLeave = approved_leaves.nature_of_leave
     no_of_days = int(approved_leaves.no_of_days)
     if typeOfLeave == "CL1":
@@ -106,6 +111,7 @@ def leave_approval(request):
         time_of_request = approved_leaves.time_of_request
     )
     approved_leaves.delete()
+    alternate.delete()
     return redirect('leave_request')
 
 def  reject_leave(request):
