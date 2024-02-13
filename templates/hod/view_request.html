@@ -1,4 +1,8 @@
 {% load static from static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +17,18 @@
         <button class="button-back" onclick="goBack()">Back</button>
     </header>
     <div class="container">
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    {% endif %}
+
+
+
         {% for data in leave_applications %}
         <h2>Employee ID: {{data.employee_id}}</h2>
         <div class="profile-info">

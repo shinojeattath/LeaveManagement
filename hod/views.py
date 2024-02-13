@@ -10,6 +10,7 @@ from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.conf import settings
 from staff.decorators import hod_required
+from django.core.exceptions import ValidationError
 
 
 
@@ -78,19 +79,25 @@ def leave_approval(request):
         numberofleaves = int(leave_application.LoP)
     left = numberofleaves - no_of_days
     
-    if typeOfLeave == "CL1":
-        leave_application.cl1_bal = left
-    elif typeOfLeave == "CL2":
-        leave_application.cl2_bal = left
-    elif typeOfLeave == "ML":
-        leave_application.ML_bal = left
-    elif typeOfLeave == "VL":
-        leave_application.VL_bal = left
-    elif typeOfLeave == "DL":
-        leave_application.DL_bal = left
-    elif typeOfLeave == "LoP":
-        leave_application.LoP = left
-    leave_application.save()
+    try:
+        if typeOfLeave == "CL1":
+            leave_application.cl1_bal = left
+        elif typeOfLeave == "CL2":
+            leave_application.cl2_bal = left
+        elif typeOfLeave == "ML":
+            leave_application.ML_bal = left
+        elif typeOfLeave == "VL":
+            leave_application.VL_bal = left
+        elif typeOfLeave == "DL":
+            leave_application.DL_bal = left
+        elif typeOfLeave == "LoP":
+            leave_application.LoP = left
+        leave_application.save()
+
+    except Exception as e:
+        messages.error(request, "No Requested leaves left")
+        return redirect('view_request')
+
     status_of_request = 'APPROVED'
     #send_mail_staff(request)
     #send_mail_hr(request)
@@ -114,7 +121,7 @@ def leave_approval(request):
     alternate.delete()
     return redirect('leave_request')
 
-def  reject_leave(request):
+def reject_leave(request):
     
     employee_id = request.session.get('staff_employee_id')
     print(employee_id)

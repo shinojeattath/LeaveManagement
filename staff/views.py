@@ -70,62 +70,49 @@ def signout(request):
 @login_required
 def new_leave_application(request):
     username = request.session.get('username', "NONE")
-    do_exist = AlternateArrangements.objects.filter(employee_id = username)
-    print(username)
 
-    if do_exist.exists():
-        messages.warning(request,"You have already applied for a leave.")
-        return redirect('profile')
-        
+    details = Staff_Details.objects.filter(employee_id=username)
+    if details.exists():
+        detail = details[0] 
     else:
-
-        details = Staff_Details.objects.filter(employee_id=username)
-        if details.exists():
-            detail = details[0] 
-        else:
-        # Handle the case where no matching records are found
-            detail = None
-        print(detail)
-        if request.method == "POST":
-            staff_name = request.POST['staff_name']
-            department = request.POST['department']
-            nature_of_leave = request.POST['leave_type']
-            leave_days = request.POST['leaveDays']
-            leave_period = request.POST['leave_from']
-            reason_for_leave = request.POST['reason']
-            linways_assigned = request.POST['leave_approval']
-            time_of_request = timezone.now()
-
-            print(reason_for_leave)
-
-            #class_semester = request.POST['classSemester']
-            #hour = request.POST['hour']
-            #subject = request.POST['subject']
-            #assigned_teacher = request.POST['assignedTeacher']
+    # Handle the case where no matching records are found
+        detail = None
+    print(detail)
+    if request.method == "POST":
+        staff_name = request.POST['staff_name']
+        department = request.POST['department']
+        nature_of_leave = request.POST['leave_type']
+        leave_days = request.POST['leaveDays']
+        leave_period = request.POST['leave_from']
+        reason_for_leave = request.POST['reason']
+        linways_assigned = request.POST['leave_approval']
+        time_of_request = timezone.now()
+        print(reason_for_leave)
+        #class_semester = request.POST['classSemester']
+        #hour = request.POST['hour']
+        #subject = request.POST['subject']
+        #assigned_teacher = request.POST['assignedTeacher']
+        
+        emp_id = Staff_Details.objects.get(employee_id = username)
+        leave_application = Leave_Application(
+            employee_id = emp_id,
+            name=staff_name,
+            department=department,
+            nature_of_leave=nature_of_leave,
+            no_of_days=leave_days,
+            leave_from=leave_period,
+            reason=reason_for_leave,
+            time_of_request = time_of_request,
+            alt_linways_assigned=linways_assigned
+            #alt_class_sem=class_semester,
+            #alt_hour=hour,
+            #alt_subject=subject,
+            #alt_assigned_teacher=assigned_teacher,
             
-
-            emp_id = Staff_Details.objects.get(employee_id = username)
-
-
-            leave_application = Leave_Application(
-                employee_id = emp_id,
-                name=staff_name,
-                department=department,
-                nature_of_leave=nature_of_leave,
-                no_of_days=leave_days,
-                leave_from=leave_period,
-                reason=reason_for_leave,
-                time_of_request = time_of_request,
-                alt_linways_assigned=linways_assigned
-                #alt_class_sem=class_semester,
-                #alt_hour=hour,
-                #alt_subject=subject,
-                #alt_assigned_teacher=assigned_teacher,
-                
-                
-            )
-            leave_application.save()
-            return redirect('new_leave_application_2')
+            
+        )
+        leave_application.save()
+        return redirect('new_leave_application_2')
     return render(request, 'staff/new_leave_application.html',{'detail': detail})
 
 @login_required
@@ -143,6 +130,7 @@ def show_leave_application(request):
 
 @transaction.atomic
 def new_leave_application_2(request):
+    print("leave apllication 2")
     username = request.session.get('username', "NONE")
     print(username)
     details = Staff_Details.objects.filter(employee_id=username)
@@ -159,7 +147,6 @@ def new_leave_application_2(request):
             alt_class_key = f'alt_class{i}'
             alt_semester_key = f'alt_semester{i}'
             alt_assigned_teacher_key = f'alt_assigned_teacher{i}'
-
             # Check if all keys for the current row exist in request.POST
             if alt_hour_key in request.POST and alt_class_key in request.POST \
                     and alt_semester_key in request.POST and alt_assigned_teacher_key in request.POST:
@@ -168,7 +155,6 @@ def new_leave_application_2(request):
                 semester1 = request.POST[alt_semester_key]
                 teacher1 = request.POST[alt_assigned_teacher_key]
                 employee_id = detail
-
                 arrangements = AlternateArrangements(
                     employee_id=employee_id,
                     alt_class=alt_class1,
@@ -176,14 +162,11 @@ def new_leave_application_2(request):
                     alt_hour=hour1,
                     alt_assigned_teacher=teacher1,
                 )
-                
                 arrangements.save()
-
-                leave = get_object_or_404(Leave_Application, employee_id = employee_id)
-                leave.submitted = True
-                leave.save()
-            
-
+                leave = Leave_Application.objects.filter(employee_id=employee_id).order_by('id')
+                first_leave = leave.first()
+                first_leave.submitted = True
+                first_leave.save()
             else:
                 # Handle missing keys
                 print(f"Keys for row {i} are missing")
@@ -196,6 +179,8 @@ def new_leave_application_2(request):
           # Redirect to the desired page after saving
         
     return render(request, 'staff/new_leave_application_2.html',{'detail': detail})
+
+
 
 def signup(request):
 
