@@ -20,6 +20,10 @@
             <button><a onclick="showLeaveRequests()" href="{% url 'show_l' %}">Show Leave Requests</a></button>
         </div>
     </div>
-    <script></script>
+    <script>
+        function signoutFunction(){
+            window.location.href="{% url 'homepage' %}";
+        }
+    </script>
 </body>
 </html>
