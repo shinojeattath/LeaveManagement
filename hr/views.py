@@ -30,7 +30,7 @@ def hr_login(request):
 def hr_homepage(request):
     applications = Status_Leave_Application.objects.filter(status_of_request = 'APPROVED')
     print(applications)
-    return render(request, 'hr/Hrdepts.html',{'applications': applications})
+    return render(request, 'hr/hrhome.html',{'applications': applications})
 
 def staff_profile_hr(request):
     employee_id = request.session.get('staff_employee_id_hr')
@@ -68,5 +68,8 @@ def ce_d(request):
 def ash_d(request):
     return render(request, 'hr/hrash.html') 
 
-def hr_cse(request):
-    pass
+def show_d(request):
+    return render(request, 'hr/Hrdepts.html')
+
+def show_l(request):
+    return render(request, 'hr/hrleave.html')
