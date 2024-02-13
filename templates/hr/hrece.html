@@ -1,0 +1,71 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>My Profile</title>
+</head>
+<body>
+    <header>
+        <button class="button1" onclick="goBack()">Back</button>
+    </header>
+
+    <div class="hod-container" id="requests-hr">
+        <h2>Electronics and Communication Engineering</h2>
+        <div class="scrollable-table">
+            <table>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>View Profile</th>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+          }
+    </script>
+</body>
+</html>

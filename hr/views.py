@@ -30,7 +30,7 @@ def hr_login(request):
 def hr_homepage(request):
     applications = Status_Leave_Application.objects.filter(status_of_request = 'APPROVED')
     print(applications)
-    return render(request, 'hr/HRdept.html',{'applications': applications})
+    return render(request, 'hr/Hrdepts.html',{'applications': applications})
 
 def staff_profile_hr(request):
     employee_id = request.session.get('staff_employee_id_hr')
@@ -50,4 +50,23 @@ def data_from_ajax_hr(request):
         print("eaefsas")
         print(employee_id)
         return redirect('staff_profile_hr')
-    
+   
+def cs_d(request):
+    return render(request, 'hr/hrcse.html')
+def eee_d(request):
+    return render(request, 'hr/hreee.html') 
+
+def ece_d(request):
+    return render(request, 'hr/hrece.html')  
+
+def me_d(request):
+    return render(request, 'hr/hrme.html') 
+
+def ce_d(request):
+    return render(request, 'hr/hrce.html') 
+
+def ash_d(request):
+    return render(request, 'hr/hrash.html') 
+
+def hr_cse(request):
+    pass
