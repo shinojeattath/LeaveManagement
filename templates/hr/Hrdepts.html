@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <button class="button1" onclick="signout()">Signout</button>
+        <button class="button-back" onclick="goBack()">Back</button>
     </header>
     <div class="container">
         <img class="logo2" src="{% static 'Uec Logo 2.png' %}" alt="Logo">
@@ -25,10 +25,9 @@
         </div>
     </div>
     <script>
-        function signout()
-        {
-            window.location.href = "{% url 'signout' %}";
-        }
+        function goBack() {
+            window.history.back();
+          }
     </script>
 </body>
 </html>

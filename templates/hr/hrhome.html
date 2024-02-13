@@ -1,0 +1,25 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <button class="button-back" onclick="signoutFunction()">Signout</button>
+    </header>
+    <div class="container">
+        <img class="logo" src="{% static 'Uec Logo 2.png' %}" alt="Logo">
+        <p></p>
+        <div class="buttons">
+            <button><a onclick="showDepartments()" href="{% url 'show_d' %}">Show Departments</a></button>
+            <button><a onclick="showLeaveRequests()" href="{% url 'show_l' %}">Show Leave Requests</a></button>
+        </div>
+    </div>
+    <script></script>
+</body>
+</html>
