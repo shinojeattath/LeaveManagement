@@ -77,6 +77,36 @@ body {
   margin-top: -60px;
 }
 
+.search-container {
+  margin: 20px auto;
+  text-align: center;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+#searchResults {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+}
+
+.result-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.result-item:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
 #signup-body{
 background-color: #0F1319;
 }
