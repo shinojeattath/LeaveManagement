@@ -13,4 +13,4 @@ urlpatterns = [
 
     path("new_leave_application_2",views.new_leave_application_2,name='new_leave_application_2'),
     path("upload",views.upload,name='upload')
-    
+]
