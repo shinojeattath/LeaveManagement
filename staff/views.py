@@ -284,3 +284,7 @@ def signup(request):
         return redirect('signup')  
     return render(request, 'staff/signup.html')
 
+  
+def upload(request):
+    return render(request, 'staff/upload.html')
+

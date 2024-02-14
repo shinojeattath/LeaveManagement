@@ -1,0 +1,37 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>SignIn</title>
+</head>
+<body>
+    <header>
+        <button class="button-back" onclick="goHome()">Back</button>
+    </header>
+    <div class="container">
+        <img class="logo2" src="{% static 'Uec Logo 2.png' %}" alt="Logo">
+        <p>Upload the Duty Leave Certificate here</p>
+        <div style="border: 2px dotted #ccc; padding: 20px; border-radius: 5px; background-color: #e5e5e5;> 
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="inputBx">
+                    <input type="file" name="file" id="file-upload" class="file-upload" accept="application/pdf">
+                    <label for="file-upload">Choose File</label>
+                </div>
+                <div class="submit">
+                    <button type="submit">Upload File</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function goHome() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
