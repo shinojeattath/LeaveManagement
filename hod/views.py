@@ -9,6 +9,8 @@ from staff.models import Staff_Details, Leave_Application, Status_Leave_Applicat
 from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.conf import settings
+from staff.decorators import hod_required
+from django.core.exceptions import ValidationError
 
 
 
@@ -31,6 +33,8 @@ def hod_login(request):
             messages.error(request, "Invalid username or Password")
     return render(request, 'hod/login.html')
 
+@login_required
+@hod_required
 def leave_request(request):
     employee_id = request.session.get('username')
     profile = get_object_or_404(Staff_Details, employee_id = employee_id)
@@ -57,6 +61,8 @@ def leave_approval(request):
     
     leave_application = get_object_or_404(Staff_Details, employee_id = employee_id)
     approved_leaves = get_object_or_404(Leave_Application, employee_id = employee_id)
+    alternate = AlternateArrangements.objects.filter(employee_id = employee_id)
+
     typeOfLeave = approved_leaves.nature_of_leave
     no_of_days = int(approved_leaves.no_of_days)
     if typeOfLeave == "CL1":
@@ -73,19 +79,25 @@ def leave_approval(request):
         numberofleaves = int(leave_application.LoP)
     left = numberofleaves - no_of_days
     
-    if typeOfLeave == "CL1":
-        leave_application.cl1_bal = left
-    elif typeOfLeave == "CL2":
-        leave_application.cl2_bal = left
-    elif typeOfLeave == "ML":
-        leave_application.ML_bal = left
-    elif typeOfLeave == "VL":
-        leave_application.VL_bal = left
-    elif typeOfLeave == "DL":
-        leave_application.DL_bal = left
-    elif typeOfLeave == "LoP":
-        leave_application.LoP = left
-    leave_application.save()
+    try:
+        if typeOfLeave == "CL1":
+            leave_application.cl1_bal = left
+        elif typeOfLeave == "CL2":
+            leave_application.cl2_bal = left
+        elif typeOfLeave == "ML":
+            leave_application.ML_bal = left
+        elif typeOfLeave == "VL":
+            leave_application.VL_bal = left
+        elif typeOfLeave == "DL":
+            leave_application.DL_bal = left
+        elif typeOfLeave == "LoP":
+            leave_application.LoP = left
+        leave_application.save()
+
+    except Exception as e:
+        messages.error(request, "No Requested leaves left")
+        return redirect('view_request')
+
     status_of_request = 'APPROVED'
     #send_mail_staff(request)
     #send_mail_hr(request)
@@ -97,18 +109,14 @@ def leave_approval(request):
         no_of_days=approved_leaves.no_of_days,
         leave_from=approved_leaves.leave_from,
         reason=approved_leaves.reason,
-        #alt_class_sem=approved_leaves.alt_class_sem,
-        #alt_hour=approved_leaves.alt_hour,
-        #alt_subject=approved_leaves.alt_subject,
-        #alt_assigned_teacher=approved_leaves.alt_assigned_teacher,
-        #alt_linways_assigned=approved_leaves.alt_linways_assigned,
         status_of_request = status_of_request,
         time_of_request = approved_leaves.time_of_request
     )
     approved_leaves.delete()
+    alternate.delete()
     return redirect('leave_request')
 
-def  reject_leave(request):
+def reject_leave(request):
     
     employee_id = request.session.get('staff_employee_id')
     print(employee_id)
@@ -176,9 +184,9 @@ def view_requests(request):
         print(a.nature_of_leave)
 
             
-        
+    gap_counter = 1
 
-    return render(request, 'hod/view_request.html',{'leave_applications': leave_applications, 'arrangements': arrangements})
+    return render(request, 'hod/view_request.html',{'leave_applications': leave_applications, 'arrangements': arrangements, 'gap_counter':gap_counter})
 
 def data_from_ajax(request):
     if request.method == 'POST':
