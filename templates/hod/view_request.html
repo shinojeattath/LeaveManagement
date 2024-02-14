@@ -1,4 +1,9 @@
 {% load static from static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load custom_filters %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +18,18 @@
         <button class="button-back" onclick="goBack()">Back</button>
     </header>
     <div class="container">
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    {% endif %}
+
+
+
         {% for data in leave_applications %}
         <h2>Employee ID: {{data.employee_id}}</h2>
         <div class="profile-info">
@@ -49,6 +66,7 @@
         {%  endfor %}
         <hr>
         <h2 id="altarr">Alternative Arrangements</h2>
+        <p>Arrangements are in the order from first date of leave</p>
 
         <table id="alternativeArrangementTable">
             <tr>
@@ -57,15 +75,43 @@
                 <th>Class</th>
                 <th>Teacher</th>
             </tr>
+{% for alt in arrangements %}
+    {% if forloop.counter0|divisibleby:7 and not forloop.first %}
+        <!-- Add gap here after every 7 rows -->
+        <tr class="gap-row">
+            <td colspan="4"></td>
             <tr>
-            {% for alt in arrangements %}
-                <td>{{alt.alt_hour}}</td>
-                <td>{{alt.alt_semester}}</td>
-                <td>{{alt.alt_class}}</td>
-                <td>{{alt.alt_assigned_teacher}}</td>
+        <tr class="gap-row">
+            <td colspan="4"></td>
+            <tr>
+                <th>Hour</th>
+                <th>Sem</th>
+                <th>Class</th>
+                <th>Teacher</th>
+            </tr> <!-- Display the gap counter -->
+        </tr>
+        
+    {% endif %}
+    <tr>
+        <td>{{ alt.alt_hour }}</td>
+        <td>{{ alt.alt_semester }}</td>
+        <td>{{ alt.alt_class }}</td>
+        <td>{{ alt.alt_assigned_teacher }}</td>
+    </tr>
+    {% with gap_counter=gap_counter|add:1 %}
+{% endwith %}
+{% endfor %}
+{% if forloop.last and gap_counter|add:1|divisibleby:7 %}
    
-            </tr>
-            {% endfor %}
+{% endif %}
+
+
+
+
+
+
+
+
             <!-- Add more rows as needed -->
         </table>
         <div style="text-align: right;">
