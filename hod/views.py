@@ -109,11 +109,6 @@ def leave_approval(request):
         no_of_days=approved_leaves.no_of_days,
         leave_from=approved_leaves.leave_from,
         reason=approved_leaves.reason,
-        #alt_class_sem=approved_leaves.alt_class_sem,
-        #alt_hour=approved_leaves.alt_hour,
-        #alt_subject=approved_leaves.alt_subject,
-        #alt_assigned_teacher=approved_leaves.alt_assigned_teacher,
-        #alt_linways_assigned=approved_leaves.alt_linways_assigned,
         status_of_request = status_of_request,
         time_of_request = approved_leaves.time_of_request
     )
@@ -189,9 +184,9 @@ def view_requests(request):
         print(a.nature_of_leave)
 
             
-        
+    gap_counter = 1
 
-    return render(request, 'hod/view_request.html',{'leave_applications': leave_applications, 'arrangements': arrangements})
+    return render(request, 'hod/view_request.html',{'leave_applications': leave_applications, 'arrangements': arrangements, 'gap_counter':gap_counter})
 
 def data_from_ajax(request):
     if request.method == 'POST':
