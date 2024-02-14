@@ -1,0 +1,108 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>My Profile</title>
+</head>
+<body>
+    <header>
+        <button class="button-back" onclick="goBack()">Back</button>
+    </header>
+
+    <div class="hod-container" id="requests-hr">
+        <h2>Electronics and Communication Engineering</h2>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button onclick="searchTable()">Search</button>
+        </div>
+        
+        <!-- Table -->
+        <div class="scrollable-table">
+            <table id="dataTable">
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>View Profile</th>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>Leader</td>
+                    <td><button onclick="viewProfile()">View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>2345</td>
+                    <td>Jgdf Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Jhghn Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>945</td>
+                    <td>jghkgn Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>kdggDoe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <tr>
+                    <td>12345</td>
+                    <td>John Doe</td>
+                    <td>Leader</td>
+                    <td><button>View Profile</button></td>
+                </tr>
+                <!-- other table rows... -->
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dataTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; // Change index to match the column you want to search (e.g., [0] for Employee ID, [1] for Name)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function viewProfile() {
+            console.log("View Profile button clicked");
+        }
+
+        function goBack() {
+            window.history.back();
+          }
+    </script>
+</body>
+</html>

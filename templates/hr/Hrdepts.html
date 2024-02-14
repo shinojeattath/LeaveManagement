@@ -1,0 +1,33 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <button class="button-back" onclick="goBack()">Back</button>
+    </header>
+    <div class="container">
+        <img class="logo2" src="{% static 'Uec Logo 2.png' %}" alt="Logo">
+        <p>Select the Department</a></p>
+        <div class="buttons">
+            <button><a onclick="selectText()" href="{% url 'cs_d' %}">Computer Science Engineering</a></button>
+    <button><a onclick="selectText()" href="{% url 'eee_d' %}">Electrical and Electronics Engineering</a></button>
+    <button><a onclick="selectText()" href="{% url 'ece_d' %}">Electronics and Communications Engineering</a></button>
+    <button><a onclick="selectText()" href="{% url 'me_d' %}">Mechanical Engineering</a></button>
+    <button><a onclick="selectText()" href="{% url 'ce_d' %}">Civil Engineering</a></button>
+    <button><a onclick="selectText()" href="{% url 'ash_d' %}">Applied Science and Humanities</a></button>
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+          }
+    </script>
+</body>
+</html>
