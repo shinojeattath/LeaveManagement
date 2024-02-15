@@ -15,5 +15,6 @@ urlpatterns = [
     path("leaverequests",views.show_l, name="show_l"),
     path('hr_leave_request',views.hr_leave_requests, name='hr_leave_request'),
     path('staff_profile_hr',views.staff_profile_hr, name='staff_profile_hr'),
+    path("dutyleaves",views.duty_l, name="duty_l"),
     
 ]

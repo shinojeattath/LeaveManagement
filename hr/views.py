@@ -7,7 +7,6 @@ from django.http import HttpResponse, JsonResponse
 from django.utils import timezone
 from staff.models import Staff_Details, Leave_Application, Status_Leave_Application
 from django.core.serializers import serialize
-from .models import PDF
 
 # Create your views here.
 def hr_login(request):
@@ -103,3 +102,5 @@ def data_from_ajax_hr(request):
         print("eaefsas")
         print(employee_id)
         return redirect('view_request')
+def duty_l(request):
+    return render(request,'hr/dutyleave.html')
