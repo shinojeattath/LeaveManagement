@@ -13,3 +13,4 @@ urlpatterns = [
     path("ash_departmeent",views.ash_d, name="ash_d"),
     path("departments",views.show_d, name= 'show_d'), 
     path("leaverequests",views.show_l, name="show_l"),
+]
