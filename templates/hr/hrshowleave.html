@@ -1,0 +1,197 @@
+{% load static from static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Request</title>
+    <style>
+        .popup-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+          }
+          
+          .popup-message h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+          }
+          
+          .popup-message p {
+            margin-bottom: 20px;
+          }
+          
+          .popup-message button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          
+          .popup-message button:hover {
+            background-color: #0056b3;
+          }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="button-back" onclick="goBack()">Back</button>
+    </header>
+    <div class="container">
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    {% endif %}
+
+        {% for data in leave_applications %}
+        <h2>Employee ID: {{data.employee_id}}</h2>
+        <div class="profile-info">
+            <div>
+                Name: <strong>{{data.name}}</strong>
+            </div>
+        </div>
+        <div class="profile-info">
+            <div>
+                Department: <strong>{{data.department}}</strong>
+            </div>
+        </div>
+
+        <!-- Leave Details Table -->
+        <br><br>
+        <table>
+            <tr>
+                <th>Nature of Leave</th>
+                <th>Number of Days</th>
+                <th>Leave From</th>
+            </tr>
+            <tr>
+                <td>{{data.nature_of_leave}}</td>
+                <td>{{data.no_of_days}} day(s)</td>
+                <td>{{data.leave_from}}</td>
+            </tr>
+
+        </table><br>
+
+        <div class="reason-for-leave">
+            <h3>Reason for Leave:</h3>
+            <p>{{data.reason}}</p>
+        </div>
+        {%  endfor %}
+        <hr>
+        <h2 id="altarr">Alternative Arrangements</h2>
+        <p>Arrangements are in the order from first date of leave</p>
+
+        <table id="alternativeArrangementTable">
+            <tr>
+                <th>Hour</th>
+                <th>Sem</th>
+                <th>Class</th>
+                <th>Teacher</th>
+            </tr>
+{% for alt in arrangements %}
+    {% if forloop.counter0|divisibleby:7 and not forloop.first %}
+        <!-- Add gap here after every 7 rows -->
+        <tr class="gap-row">
+            <td colspan="4"></td>
+            <tr>
+        <tr class="gap-row">
+            <td colspan="4"></td>
+            <tr>
+                <th>Hour</th>
+                <th>Sem</th>
+                <th>Class</th>
+                <th>Teacher</th>
+            </tr> <!-- Display the gap counter -->
+        </tr>
+        
+    {% endif %}
+    <tr>
+        <td>{{ alt.alt_hour }}</td>
+        <td>{{ alt.alt_semester }}</td>
+        <td>{{ alt.alt_class }}</td>
+        <td>{{ alt.alt_assigned_teacher }}</td>
+    </tr>
+    {% with gap_counter=gap_counter|add:1 %}
+{% endwith %}
+{% endfor %}
+{% if forloop.last and gap_counter|add:1|divisibleby:7 %}
+   
+{% endif %}
+
+            <!-- Add more rows as needed -->
+        </table>
+        <div style="text-align: right;">
+            <button class="button" id="approve" onclick="showApprovePopup()">Approve</button>
+            <button class="button" id="reject" onclick="showRejectPopup()">Reject</button>
+            <button class="button"><a href="{% url 'staff_profile' %}">View Profile</a></button>
+            <button class="button" onclick="viewPdf()">View Documents</button>
+        </div>
+    </div>
+
+    <div class="popup-message" id="approvePopup" style="display: none;">
+        <h2>Confirmation</h2>
+        <p>Are you sure you want to approve this leave request?</p>
+        <button onclick="approveLeave()" id="approve">Approve</button>
+        <button onclick="closePopup()">Cancel</button>
+    </div>
+
+    <div class="popup-message" id="rejectPopup" style="display: none;">
+        <h2>Confirmation</h2>
+        <p>Are you sure you want to reject this leave request?</p>
+        <button onclick="rejectLeave()" id="reject">Reject</button>
+        <button onclick="closePopup()">Cancel</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = "{% url 'homepage' %}";
+        }
+
+        function showApprovePopup() {
+            document.getElementById('approvePopup').style.display = 'block';
+        }
+
+        function showRejectPopup() {
+            document.getElementById('rejectPopup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('approvePopup').style.display = 'none';
+            document.getElementById('rejectPopup').style.display = 'none';
+        }
+
+        function approveLeave() {
+            window.location.href = "{% url 'leave_approval' %}";
+        }
+
+        function rejectLeave() {
+             window.location.href = "{% url 'reject_leave' %}";
+        }
+
+        function viewPdf() {
+            window.open('path/to/your/pdf/file.pdf', '_blank');
+          }
+
+    </script>
+</body>
+</html>
