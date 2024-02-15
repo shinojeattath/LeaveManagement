@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>My Profile</title>
 </head>
 <body>
@@ -36,7 +37,7 @@
                     <td>{{i.employee_id}}</td>
                     <td>{{i.name}}</td>
                     <td>{{i.designation}}</td>
-                    <td><button onclick="ShowProfile('{{i.employee_id}}')">View Profile</button></td>
+                    <td><button onclick="viewRequest('{{i.employee_id}}')">View Profile</button></td>
                 </tr>
                 {% endif %}
                 {% endfor %}
@@ -65,9 +66,30 @@
             }
         }
 
-        function viewProfile() {
-            console.log("View Profile button clicked");
+        function viewRequest(employee_id) {
+        
+        $.ajax({
+        type: "POST",
+        url: "{% url 'data_from_ajax' %}",
+        data: {
+            employee_id: employee_id,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function(response) {
+            console.log("Data sent successfully");
+            // Handle the response from the Django view if needed
+            window.location.href = "{% url 'staff_profile_hr' %}";
+        },
+        error: function(error) {
+            console.error("Error sending data:", error);
+            console.error("Error:", error);
+            console.error("Status:", status);
+            console.error("XHR:", xhr);
         }
+    });
+
+        
+    }
 
         function goBack() {
             window.history.back();

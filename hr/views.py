@@ -83,3 +83,22 @@ def show_l(request):
 def hr_leave_requests(request):
     applications = Status_Leave_Application.objects.filter(status_of_request = 'APPROVED')
     return render(request, 'hr/hr_leave_request.html',{'applications':applications})
+
+def staff_profile_hr(request):
+    emp_id = request.session.get('staff_employee_id', "NONE")
+    details = Staff_Details.objects.filter(employee_id = emp_id)
+    if details.exists():
+        detail = details[0]
+    else:
+        detail = None
+        print(detail.emp_id)
+    return render(request, 'hod/staff_profile.html', {'detail': detail})
+
+def data_from_ajax_hr(request):
+    if request.method == 'POST':
+        # Extract the employee ID from the POST data
+        employee_id = request.POST.get('employee_id')
+        request.session['staff_employee_id'] = employee_id
+        print("eaefsas")
+        print(employee_id)
+        return redirect('view_request')
