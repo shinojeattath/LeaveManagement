@@ -296,6 +296,31 @@ margin-top: 15px;
 .button2{
   margin-right: 20px;
   margin-top: 15px;
+  width: 100%;
+}
+
+.file-upload {
+  display: none;
+}
+
+.file-upload + label {
+  background-color: #4caf4fad;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-upload + label:hover {
+  background-color: #45a049;
+}
+
+.file-upload:focus + label {
+  outline: 1px dotted #000;
 }
 
 .add{
