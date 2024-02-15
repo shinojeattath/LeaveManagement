@@ -17,12 +17,20 @@
         <p></p>
         <div class="buttons">
             <button><a onclick="showDepartments()" href="{% url 'show_d' %}">Show Departments</a></button>
-            <button><a onclick="showLeaveRequests()" href="{% url 'show_l' %}">Show Leave Requests</a></button>
+            <button><a onclick="showLeaveRequests()">Show Leave Requests</a></button>
         </div>
     </div>
     <script>
         function signoutFunction(){
             window.location.href="{% url 'homepage' %}";
+        }
+
+        function showDepartments(){
+            window.location.href="{% url 'show_d' %}"
+        }
+
+        function showLeaveRequests(){
+            window.location.href="{% url 'hr_leave_request' %}"
         }
     </script>
 </body>
