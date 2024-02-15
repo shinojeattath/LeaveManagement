@@ -104,3 +104,5 @@ def data_from_ajax_hr(request):
         return redirect('view_request')
 def duty_l(request):
     return render(request,'hr/dutyleave.html')
+def view_dl(request):
+    return render(request, 'hr/hrshowleave.html')
