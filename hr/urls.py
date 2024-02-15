@@ -11,7 +11,7 @@ urlpatterns = [
     path("ce_departmeent",views.ce_d, name="ce_d"),
     path("me_departmeent",views.me_d, name="me_d"),
     path("ash_departmeent",views.ash_d, name="ash_d"),
-    path("departments",views.show_d, name= 'show_d'), 
+    path("departments",views.show_d, name= "show_d"), 
     path("leaverequests",views.show_l, name="show_l"),
     path('hr_leave_request',views.hr_leave_requests, name='hr_leave_request'),
 ]

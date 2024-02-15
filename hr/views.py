@@ -7,6 +7,7 @@ from django.http import HttpResponse, JsonResponse
 from django.utils import timezone
 from staff.models import Staff_Details, Leave_Application, Status_Leave_Application
 from django.core.serializers import serialize
+from .models import PDF
 
 # Create your views here.
 def hr_login(request):
