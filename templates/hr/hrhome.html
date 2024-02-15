@@ -18,6 +18,7 @@
         <div class="buttons">
             <button><a onclick="showDepartments()" href="{% url 'show_d' %}">Show Departments</a></button>
             <button><a onclick="showLeaveRequests()">Show Leave Requests</a></button>
+            <button><a onclick="DutyLeaveRequests()">Duty Leaves & Medical Leaves</a></button>
         </div>
     </div>
     <script>
@@ -31,6 +32,9 @@
 
         function showLeaveRequests(){
             window.location.href="{% url 'hr_leave_request' %}"
+        }
+        function DutyLeaveRequests(){
+            window.location.href="{% url 'duty_l' %}"
         }
     </script>
 </body>
