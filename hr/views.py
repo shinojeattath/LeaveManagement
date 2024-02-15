@@ -52,24 +52,34 @@ def data_from_ajax_hr(request):
         return redirect('staff_profile_hr')
    
 def cs_d(request):
-    return render(request, 'hr/hrcse.html')
+    application = Staff_Details.objects.filter(department = 'CSE')
+    return render(request, 'hr/hrcse.html',{'application':application})
 def eee_d(request):
-    return render(request, 'hr/hreee.html') 
+    application = Staff_Details.objects.filter(department = 'EEE')
+    return render(request, 'hr/hreee.html',{'application':application}) 
 
 def ece_d(request):
-    return render(request, 'hr/hrece.html')  
+    application = Staff_Details.objects.filter(department = 'ECE')
+    return render(request, 'hr/hrece.html',{'application':application})  
 
 def me_d(request):
-    return render(request, 'hr/hrme.html') 
+    application = Staff_Details.objects.filter(department = 'ME')
+    return render(request, 'hr/hrme.html',{'application':application}) 
 
 def ce_d(request):
-    return render(request, 'hr/hrce.html') 
+    application = Staff_Details.objects.filter(department = 'CE')
+    return render(request, 'hr/hrce.html',{'application':application}) 
 
 def ash_d(request):
-    return render(request, 'hr/hrash.html') 
+    application = Staff_Details.objects.filter(department = 'ASH')
+    return render(request, 'hr/hrash.html',{'application':application}) 
 
 def show_d(request):
     return render(request, 'hr/Hrdepts.html')
 
 def show_l(request):
     return render(request, 'hr/hrleave.html')
+
+def hr_leave_requests(request):
+    applications = Status_Leave_Application.objects.filter(status_of_request = 'APPROVED')
+    return render(request, 'hr/hr_leave_request.html',{'applications':applications})

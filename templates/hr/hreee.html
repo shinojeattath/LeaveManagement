@@ -23,54 +23,18 @@
         <!-- Table -->
         <div class="scrollable-table">
             <table id="dataTable">
+                {% if application %}
+                {% for i in application %}
+                {% if i.department == 'EEE' %}
                 <tr>
-                    <th>Employee ID</th>
-                    <th>Name</th>
-                    <th>Designation</th>
-                    <th>View Profile</th>
+                    <td>{{i.employee_id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.designation}}</td>
+                    <td><button onclick="ShowProfile('{{i.employee_id}}')">View Profile</button></td>
                 </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>Leader</td>
-                    <td><button onclick="viewProfile()">View Profile</button></td>
-                </tr>
-                <tr>
-                    <td>2345</td>
-                    <td>Jgdf Doe</td>
-                    <td>Leader</td>
-                    <td><button>View Profile</button></td>
-                </tr>
-                <tr>
-                    <td>15</td>
-                    <td>Jhghn Doe</td>
-                    <td>Leader</td>
-                    <td><button>View Profile</button></td>
-                </tr>
-                <tr>
-                    <td>945</td>
-                    <td>jghkgn Doe</td>
-                    <td>Leader</td>
-                    <td><button>View Profile</button></td>
-                </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>kdggDoe</td>
-                    <td>Leader</td>
-                    <td><button>View Profile</button></td>
-                </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>Leader</td>
-                    <td><button>View Profile</button></td>
-                </tr>
-                <tr>
-                    <td>12345</td>
-                    <td>John Doe</td>
-                    <td>Leader</td>
-                    <td><button>View Profile</button></td>
-                </tr>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
                 <!-- other table rows... -->
             </table>
         </div>
