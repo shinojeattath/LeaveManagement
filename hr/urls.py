@@ -19,4 +19,5 @@ urlpatterns = [
     path("view_dutyleave",views.view_dl, name = 'view_dl'),
     path('view_requests_hr',views.view_requests_hr, name ='view_requests_hr'),
     path('leave_approval_hr',views.leave_approval_hr, name = 'leave_approval_hr'),
+    path('reject_leave_hr',views.reject_leave_hr,name='reject_leave_hr')
 ]
