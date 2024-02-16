@@ -102,7 +102,7 @@ def new_leave_application(request):
             #hour = request.POST['hour']
             #subject = request.POST['subject']
             #assigned_teacher = request.POST['assignedTeacher']
-            request.session['nature_of_leave'] = nature_of_leave
+
             emp_id = Staff_Details.objects.get(employee_id = username)
             leave_application = Leave_Application(
                 employee_id = emp_id,
@@ -291,7 +291,8 @@ def signup(request):
   
 def upload(request):
     employee_id = request.session.get('username')
-    nature_of_leave = request.session.get('nature_of_leave')
+    application = get_object_or_404(Leave_Application, employee_id = employee_id)
+    nature_of_leave = application.nature_of_leave
     if request.method == 'POST':
         # Check if the key exists in request.FILES
         if 'pdffile' in request.FILES:

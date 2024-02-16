@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from staff.decorators import hod_required
 from django.core.exceptions import ValidationError
+from hr.models import Leave_Application_hr
 
 
 
@@ -97,24 +98,40 @@ def leave_approval(request):
     except Exception as e:
         messages.error(request, "No Requested leaves left")
         return redirect('view_request')
-
-    status_of_request = 'APPROVED'
-    #send_mail_staff(request)
-    #send_mail_hr(request)
-    Status_Leave_Application.objects.create(
-        employee_id = approved_leaves.employee_id,
-        name=approved_leaves.name,
-        department=approved_leaves.department,
-        nature_of_leave=approved_leaves.nature_of_leave,
-        no_of_days=approved_leaves.no_of_days,
-        leave_from=approved_leaves.leave_from,
-        reason=approved_leaves.reason,
-        status_of_request = status_of_request,
-        time_of_request = approved_leaves.time_of_request
-    )
-    approved_leaves.delete()
-    alternate.delete()
-    return redirect('leave_request')
+    
+    if approved_leaves.nature_of_leave == 'DL' or approved_leaves.nature_of_leave == 'ML':
+        status_of_request = 'Forwarded to HR'
+        Leave_Application_hr.objects.create(
+            employee_id = approved_leaves.employee_id,
+            name=approved_leaves.name,
+            department=approved_leaves.department,
+            nature_of_leave=approved_leaves.nature_of_leave,
+            no_of_days=approved_leaves.no_of_days,
+            leave_from=approved_leaves.leave_from,
+            reason=approved_leaves.reason,
+            status_of_request = status_of_request,
+            time_of_request = approved_leaves.time_of_request
+        )
+        approved_leaves.delete()
+        return redirect('leave_request')
+    else:
+        status_of_request = 'APPROVED'
+        #send_mail_staff(request)
+        #send_mail_hr(request)
+        Status_Leave_Application.objects.create(
+            employee_id = approved_leaves.employee_id,
+            name=approved_leaves.name,
+            department=approved_leaves.department,
+            nature_of_leave=approved_leaves.nature_of_leave,
+            no_of_days=approved_leaves.no_of_days,
+            leave_from=approved_leaves.leave_from,
+            reason=approved_leaves.reason,
+            status_of_request = status_of_request,
+            time_of_request = approved_leaves.time_of_request
+        )
+        approved_leaves.delete()
+        alternate.delete()
+        return redirect('leave_request')
 
 def reject_leave(request):
     
