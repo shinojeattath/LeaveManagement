@@ -146,7 +146,7 @@ def send_mail_staff(request):
     print(employee_id)
 
     subject = 'Leave Status'
-    message = f'Entha Mwonoose Jaada aahno To HOD'
+    message = f''
     recipient = 'em.shinojeattath5112@gmail.com'
     from_mail = 'Anzil'
     send_mail(subject, message, from_mail, [recipient])
@@ -160,7 +160,7 @@ def send_mail_hr(request):
     print(employee_id)
 
     subject = 'Leave Status'
-    message = f'Entha Mwonoose Jaada aahno To HR'
+    message = f''
     recipient = 'em.shinojeattath5112@gmail.com'
     from_mail = 'minimol.project@gmail.com'
     send_mail(subject, message, from_mail, [recipient])

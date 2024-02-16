@@ -4,9 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.utils import timezone
-from .models import Staff_Details, Leave_Application, Status_Leave_Application, AlternateArrangements
+from .models import Staff_Details, Leave_Application, Status_Leave_Application, AlternateArrangements, Pdf
 from django.db import transaction
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -102,7 +102,7 @@ def new_leave_application(request):
             #hour = request.POST['hour']
             #subject = request.POST['subject']
             #assigned_teacher = request.POST['assignedTeacher']
-            
+            request.session['nature_of_leave'] = nature_of_leave
             emp_id = Staff_Details.objects.get(employee_id = username)
             leave_application = Leave_Application(
                 employee_id = emp_id,
@@ -122,6 +122,10 @@ def new_leave_application(request):
                 
             )
             leave_application.save()
+
+           
+              
+
             return redirect('new_leave_application_2')
     return render(request, 'staff/new_leave_application.html',{'detail': detail})
 
@@ -286,5 +290,25 @@ def signup(request):
 
   
 def upload(request):
+    employee_id = request.session.get('username')
+    nature_of_leave = request.session.get('nature_of_leave')
+    if request.method == 'POST':
+        # Check if the key exists in request.FILES
+        if 'pdffile' in request.FILES:
+            uploaded_file = request.FILES['pdffile']
+            print(employee_id)
+            print(nature_of_leave)
+            pdf = Pdf(pdffile=uploaded_file, 
+                      employee_id = employee_id, 
+                      nature_of_leave = nature_of_leave
+                    )
+            
+            pdf.save()
+
+
+            messages.success(request, "File uploaded successfully")
+            return redirect('profile')
+        else:
+            return HttpResponseBadRequest("File upload failed: 'pdffile' not found in request.")
     return render(request, 'staff/upload.html')
 

@@ -141,7 +141,14 @@
             <!-- Add more rows as needed -->
         </table>
         <div style="text-align: right;">
-            <button class="button" id="approve" onclick="showApprovePopup()">Approve</button>
+        {% for data in leave_applications %}
+        {% if data.nature_of_leave == 'ML' or data.nature_of_leave == 'Dl' %}
+            <button class="button" id="approve" onclick="showApprovePopup()">Forward to HR</button>
+        {% else %}
+        <button class="button" id="approve" onclick="showApprovePopup()">Accept</button>
+
+        {% endif %}
+        {% endfor %}
             <button class="button" id="reject" onclick="showRejectPopup()">Reject</button>
             <button class="button"><a href="{% url 'staff_profile' %}">View Profile</a></button>
         </div>
