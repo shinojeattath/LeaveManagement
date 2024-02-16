@@ -19,7 +19,7 @@
             <h2>Requests</h2>
         </div>
         <div class="requests">
-            {% for data in leave_applications %}
+            {% for data in application %}
             <div class="request">
                 <div class="info">
                     <p>Staff Name: <strong>{{data.name}}</strong></p>
@@ -50,7 +50,7 @@
         success: function(response) {
             console.log("Data sent successfully");
             // Handle the response from the Django view if needed
-            window.location.href = "{% url 'view_request' %}";
+            window.location.href = "{% url 'view_requests_hr' %}";
         },
         error: function(error) {
             console.error("Error sending data:", error);
