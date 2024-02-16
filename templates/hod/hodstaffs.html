@@ -1,0 +1,101 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Staff Details</title>
+</head>
+<body>
+    <header>
+        <button class="button-back" onclick="goBack()">Back</button>
+    </header>
+
+    <div class="hod-container" id="requests-hr">
+        <h2>Computer Science Engineering</h2>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button onclick="searchTable()">Search</button>
+        </div>
+        
+        <!-- Table -->
+        <div class="scrollable-table">
+            <table id="dataTable">
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>View Profile</th>
+                </tr>
+                {% if application %}
+                {% for i in application %}
+                {% if i.department == 'CSE' %}
+                <tr>
+                    <td>{{i.employee_id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.designation}}</td>
+                    <td><button onclick="viewRequest('{{i.employee_id}}')">View Profile</button></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                <!-- other table rows... -->
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dataTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; // Change index to match the column you want to search (e.g., [0] for Employee ID, [1] for Name)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+    function viewRequest(employee_id) {
+        
+    $.ajax({
+        type: "POST",
+        url: "{% url 'data_from_ajax' %}",
+        data: {
+            employee_id: employee_id,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function(response) {
+            console.log("Data sent successfully");
+            // Handle the response from the Django view if needed
+            window.location.href = "{% url 'staff_profile_hr' %}";
+        },
+        error: function(error) {
+            console.error("Error sending data:", error);
+            console.error("Error:", error);
+            console.error("Status:", status);
+            console.error("XHR:", xhr);
+        }
+    });
+
+        
+    }
+
+       
+        function goBack() {
+            window.history.back();
+          }
+    </script>
+</body>
+</html>
