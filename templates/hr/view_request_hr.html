@@ -143,10 +143,11 @@
         <div style="text-align: right;">
         
         
-        <button class="button" id="approve" onclick="showApprovePopup()">Accept</button>
+        <button class="button2" id="approve" onclick="showApprovePopup()">Accept</button>
 
-            <button class="button" id="reject" onclick="showRejectPopup()">Reject</button>
-            <button class="button"><a href="{% url 'staff_profile' %}">View Profile</a></button>
+            <button class="button2" id="reject" onclick="showRejectPopup()">Reject</button>
+            <button class="button2"><a href="{% url 'staff_profile' %}">View Profile</a></button>
+            <button class="button2" onclick="viewPdf()">View Documents</button>
         </div>
     </div>
 
@@ -166,7 +167,7 @@
 
     <script>
         function goBack() {
-            window.location.href = "{% url 'homepage' %}";
+            window.location.href = "{% url 'duty_l' %}";
         }
 
         function showApprovePopup() {
@@ -189,6 +190,11 @@
         function rejectLeave() {
              window.location.href = "{% url 'reject_leave' %}";
         }
+
+        function viewPdf() {
+            window.open('media/media/Untitled.pdf', '_blank');
+          }
+
     </script>
 </body>
 </html>
