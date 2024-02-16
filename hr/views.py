@@ -201,3 +201,24 @@ def leave_approval_hr(request):
     approved_leaves.delete()
     alternate.delete()
     return redirect('duty_l')
+
+def reject_leave_hr(request):
+    
+    employee_id = request.session.get('staff_employee_id')
+    print(employee_id)
+    #send_mail_hr(request)
+    emp = get_object_or_404(Staff_Details, employee_id = employee_id)
+    approved_leaves = get_object_or_404(Leave_Application_hr, employee_id = employee_id)
+    status_of_request = 'REJECTED'
+    Status_Leave_Application.objects.create(
+        employee_id = emp,
+        nature_of_leave=approved_leaves.nature_of_leave,
+        no_of_days=approved_leaves.no_of_days,
+        leave_from=approved_leaves.leave_from,
+        status_of_request = status_of_request,
+        time_of_request = approved_leaves.time_of_request
+    )
+    approved_leaves.delete()
+    arrangements = AlternateArrangements.objects.filter(employee_id = employee_id)
+    arrangements.delete()
+    return redirect('leave_request_hr')
