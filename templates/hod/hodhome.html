@@ -16,9 +16,8 @@
         <img class="logo" src="{% static 'Uec Logo 2.png' %}" alt="Logo">
         <p>Welcome </p>
         <div class="buttons">
-            <button><a onclick="showDepartments()" href="{% url 'show_d' %}">Show Departments</a></button>
+            <button><a onclick="showStaffs()" href="{% url 'hod_staff' %}">Show All Staffs</a></button>
             <button><a onclick="showLeaveRequests()">Show Leave Requests</a></button>
-            <button><a onclick="DutyLeaveRequests()">Duty Leaves & Medical Leaves</a></button>
         </div>
     </div>
     <script>
@@ -26,15 +25,8 @@
             window.location.href="{% url 'homepage' %}";
         }
 
-        function showDepartments(){
-            window.location.href="{% url 'show_d' %}"
-        }
-
         function showLeaveRequests(){
-            window.location.href="{% url 'hr_leave_request' %}"
-        }
-        function DutyLeaveRequests(){
-            window.location.href="{% url 'duty_l' %}"
+            window.location.href="{% url 'leave_request' %}"
         }
     </script>
 </body>

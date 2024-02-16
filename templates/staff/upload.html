@@ -15,7 +15,7 @@
     <div class="container">
         <img class="logo2" src="{% static 'Uec Logo 2.png' %}" alt="Logo">
         <p>Upload the Duty Leave Certificate here</p>
-        <div style="border: 2px dotted #ccc; padding: 20px; border-radius: 5px; background-color: #e5e5e5;> 
+        <div style="border: 2px dotted #ccc; padding: 20px; border-radius: 5px; background-color: #e5e5e5;"> 
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="inputBx">
@@ -28,6 +28,9 @@
             </form>
         </div>
     </div>
+    <div class="info-text">
+        The uploaded file must be in .pdf format.
+   </div>
     <script>
         function goHome() {
             window.history.back();
@@ -35,3 +38,4 @@
     </script>
 </body>
 </html>
+
