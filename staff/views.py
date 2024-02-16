@@ -294,7 +294,7 @@ def upload(request):
     application = get_object_or_404(Leave_Application, employee_id = employee_id)
     nature_of_leave = application.nature_of_leave
     if request.method == 'POST':
-        # Check if the key exists in request.FILES
+        
         if 'pdffile' in request.FILES:
             uploaded_file = request.FILES['pdffile']
             print(employee_id)
@@ -306,8 +306,6 @@ def upload(request):
             
             pdf.save()
             
-
-
             messages.success(request, "File uploaded successfully")
             return redirect('profile')
         else:

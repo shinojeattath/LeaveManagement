@@ -14,8 +14,7 @@
 </head>
 <body>
     <header>
-        <img src="{% static 'Uec Logo 1.png' %}" alt="Logo" class="logo3">
-        <button class="button1" onclick="signoutFunction()">Signout</button>
+        <button class="button-back" onclick="goBack()">Back</button>
     </header>
 
     <div class="container" id="requests-hr">
@@ -219,9 +218,10 @@
     });
 
     }
-    function signoutFunction(){
-        window.location.href="{% url 'homepage' %}"
-    }
+
+    function goBack() {
+        window.location.href="{% url 'hr_homepage' %}";
+      }
     
     </script>
 </body>

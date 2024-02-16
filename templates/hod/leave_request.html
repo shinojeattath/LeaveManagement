@@ -12,7 +12,6 @@
 <body>
     <header>
         <button class="button-back" onclick="goBack()">Back</button>
-        <button class="button1" onclick="signoutFunction()">Signout</button>
     </header>
     <div class="hod-container">
         <div class="inbox">
@@ -63,9 +62,6 @@
         
     }
 
-    function signoutFunction(){
-        window.location.href="{% url 'homepage' %}";
-    }
 
     function goBack() {
         window.history.back();
