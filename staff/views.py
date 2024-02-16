@@ -304,6 +304,7 @@ def upload(request):
                     )
             
             pdf.save()
+            
 
 
             messages.success(request, "File uploaded successfully")
