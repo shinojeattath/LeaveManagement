@@ -13,4 +13,6 @@ urlpatterns = [
     path("view_request/",views.view_requests, name = 'view_request'),
     path("data_from_ajax",views.data_from_ajax, name= 'data_from_ajax'),
     path("staff_profile", views.staff_profile, name = 'staff_profile'),
+    path("hod_home",views.hod_home, name='hod_home'),
+    path("hod_staff",views.hod_staff, name="hod_staff"),
 ]

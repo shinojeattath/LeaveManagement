@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <title>SignIn</title>
+    <title>Staff Login</title>
 </head>
 <body>
     <header>
@@ -15,9 +15,9 @@
     <div class="container">
         <img class="logo2" src="{% static 'Uec Logo 2.png' %}" alt="Logo">
         <div class="signin">
-            <p>Sign In</p>
+            <p>Staff Login</p>
         </div>
-        <p>Use your account</p>
+        <p>Please enter your credentials</p>
         <form method='post'>
 
         {% if messages %}
@@ -45,6 +45,7 @@
             </div>
         </form>
     </div>
+    
     <script>
         function goHome() {
             window.location.href = "{% url 'homepage' %}";

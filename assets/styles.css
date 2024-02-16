@@ -436,7 +436,13 @@ tr:nth-child(even) {
   font-weight: bold;
   color: #888;
   margin-top: 20px;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  line-height: 1.5;
 }
+
+
 input[type="email"] {
   box-sizing: border-box;
   width: 100%;

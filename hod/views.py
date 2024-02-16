@@ -25,7 +25,7 @@ def hod_login(request):
             login(request, user)
             request.session['username'] = username
             if user.groups.filter(name='HOD').exists():
-                return redirect('leave_request')
+                return redirect('hod_home')
             else:
                 messages.error(request, "Invalid username or Password")
                 return render(request, 'hod/login.html')
@@ -206,3 +206,9 @@ def staff_profile(request):
         detail = None
         print(detail.emp_id)
     return render(request, 'hod/staff_profile.html', {'detail': detail})
+
+def hod_home(request):
+    return render(request, 'hod/hodhome.html')
+
+def hod_staff(request):
+    return render(request, 'hod/hodstaffs.html')
