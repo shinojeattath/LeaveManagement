@@ -142,7 +142,7 @@
         </table>
         <div style="text-align: right;">
         {% for data in leave_applications %}
-        {% if data.nature_of_leave == 'ML' or data.nature_of_leave == 'Dl' %}
+        {% if data.nature_of_leave == 'ML' or data.nature_of_leave == 'DL' %}
             <button class="button" id="approve" onclick="showApprovePopup()">Forward to HR</button>
         {% else %}
         <button class="button" id="approve" onclick="showApprovePopup()">Accept</button>
