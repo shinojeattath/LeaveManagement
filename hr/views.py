@@ -222,3 +222,17 @@ def reject_leave_hr(request):
     arrangements = AlternateArrangements.objects.filter(employee_id = employee_id)
     arrangements.delete()
     return redirect('leave_request_hr')
+
+def serve_pdf(request):
+    employee_id = request.session.get("staff_employee_id")
+    pdf = get_object_or_404(Pdf, employee_id = employee_id)
+    # Assuming the PDF file is stored in a FileField named 'pdf_field'
+    pdf_file = pdf.pdffile
+    
+    # Set the appropriate content type for PDF files
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    
+    # Set Content-Disposition header to specify 'inline' to open in browser
+    response['Content-Disposition'] = 'inline; filename="your_pdf_filename.pdf"'
+    
+    return response
