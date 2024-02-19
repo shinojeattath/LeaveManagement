@@ -147,7 +147,7 @@
 
             <button class="button2" id="reject" onclick="showRejectPopup()">Reject</button>
             <button class="button2"><a href="{% url 'staff_profile' %}">View Profile</a></button>
-            <button class="button2" onclick="viewPdf()"><a href="{% url 'serve_pdf' %}">View Documents</a></button>
+            <button class="button2" onclick="viewPdf()">View Documents</button>
         </div>
     </div>
 
@@ -191,9 +191,9 @@
              window.location.href = "{% url 'reject_leave_hr' %}";
         }
 
-        //function viewPdf() {
-          //  window.open('media/media/Untitled.pdf', '_blank');
-          //}
+        function viewPdf() {
+            window.open('serve_pdf', '_blank');
+        }
 
     </script>
 </body>

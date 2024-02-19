@@ -225,7 +225,13 @@ def reject_leave_hr(request):
 
 def serve_pdf(request):
     employee_id = request.session.get("staff_employee_id")
-    pdf = get_object_or_404(Pdf, employee_id = employee_id)
+    try:
+        pdf = get_object_or_404(Pdf, employee_id = employee_id)
+    except Exception as e:
+        messages.error(request, "No Requested leaves left")
+        return redirect('view_request_hr')
+    
+    
     # Assuming the PDF file is stored in a FileField named 'pdf_field'
     pdf_file = pdf.pdffile
     
