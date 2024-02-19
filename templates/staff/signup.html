@@ -13,50 +13,6 @@
     </header>
     <div class="container" id="signup-container">
         <h1>Sign Up</h1>
-        <form action="#" method="post">
-            {% csrf_token %}
-            <label for="employeeId">Employee ID:</label>
-            <input type="text" id="signup-input" name="employeeId" required>
-
-            <label for="name">Name:</label>
-            <input type="text" id="signup-input" name="name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="signup-input" name="email" required>
-
-            <label for="department">Department:</label>
-            <input type="text" id="signup-input" name="department" required>
-            
-            <label for="department">Designation:</label>
-            <input type="text" id="signup-input" name="designation" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="signup-pass" name="password" required>
-
-            <label for="retypePassword">Retype Password:</label>
-            <input type="password" id="signup-repass" name="retypePassword" required>
-
-            <button type="submit" id="signup-button2">REGISTER</button>
-        </form>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
-{% load static from static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{% static 'Uec Logo 2.png' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <title>SignIn</title>
-</head>
-<body id="signup-body">
-    <header>
-    </header>
-    <div class="container" id="signup-container">
-        <h1>Sign Up</h1>
         <form action="#" method="post" onsubmit="return validatePasswords()">
             {% csrf_token %}
             <label for="employeeId">Employee ID:</label>
