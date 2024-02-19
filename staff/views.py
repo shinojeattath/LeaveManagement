@@ -290,7 +290,11 @@ def signup(request):
   
 def upload(request):
     employee_id = request.session.get('username')
-    application = get_object_or_404(Leave_Application, employee_id = employee_id)
+    try:
+        application = get_object_or_404(Leave_Application, employee_id = employee_id)
+    except Exception as e:
+        messages.error(request, "You have not applied for a leave")
+        return redirect('profile')
     nature_of_leave = application.nature_of_leave
     if request.method == 'POST':
         
