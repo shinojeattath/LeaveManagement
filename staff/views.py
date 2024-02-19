@@ -266,7 +266,6 @@ def signup(request):
 
         #password1 = request.POST['password1']
 
-
         
         user = User.objects.create_user(employeeId,email,password)
         user.save()

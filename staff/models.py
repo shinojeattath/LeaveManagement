@@ -6,7 +6,7 @@ class Staff_Details(models.Model):
 
     employee_id = models.CharField( max_length=15, primary_key=True)
     name = models.CharField(max_length=20)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=False)
     department = models.CharField(max_length=5)
     designation = models.CharField(max_length=20, null=True) 
     cl1_bal = models.PositiveIntegerField(null=True)
