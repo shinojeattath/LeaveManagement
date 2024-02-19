@@ -71,8 +71,6 @@ body {
 }
 
 
-
-
 .scrollable-table {
   max-height: 300x;
   overflow-y:  auto;
@@ -138,6 +136,15 @@ background-color: #f2f2f21a;
 border: 1px solid #cccccc00;
 }
 
+#signup-pass{
+  background-color: #f2f2f21a;
+  border: 1px solid #cccccc00;
+}
+
+#signup-repass{
+    background-color: #f2f2f21a;
+    border: 1px solid #cccccc00;
+}
 #requests-hr{
 margin-bottom: -60px;
 }
