@@ -51,7 +51,6 @@ def profile(request):
         detail = details[0]
     else:
         detail = None
-        print(detail.emp_id)
     leave = Leave_Application.objects.filter(employee_id = emp_id)
     if leave.exists():
         leave2 = leave[0]
