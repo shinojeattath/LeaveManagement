@@ -6,12 +6,16 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.utils import timezone
-from .models import Staff_Details, Leave_Application, Status_Leave_Application, AlternateArrangements, Pdf
+from .models import Staff_Details, Leave_Application, Status_Leave_Application, AlternateArrangements
+from hr.models import *
 from django.db import transaction
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .decorators import staff_required
 from django.urls import reverse
+from django.db.models import Q
+from datetime import datetime
+
 
 
 # Create your views here.
@@ -289,28 +293,61 @@ def signup(request):
   
 def upload(request):
     employee_id = request.session.get('username')
+    application_date = Leave_Application.objects.filter(Q(employee_id=employee_id) & (Q(nature_of_leave='ML') | Q(nature_of_leave='DL')))
+    print(application_date)
     try:
-        application = get_object_or_404(Leave_Application, employee_id = employee_id)
-    except Exception as e:
-        messages.error(request, "You have not applied for a leave")
-        return redirect('profile')
-    nature_of_leave = application.nature_of_leave
-    if request.method == 'POST':
+        print(application_date)
+        application = get_object_or_404(Leave_Application, employee_id = employee_id, nature_of_leave = "ML")
         
-        if 'pdffile' in request.FILES:
-            uploaded_file = request.FILES['pdffile']
-            print(employee_id)
-            print(nature_of_leave)
-            pdf = Pdf(pdffile=uploaded_file, 
-                      employee_id = employee_id, 
-                      nature_of_leave = nature_of_leave
-                    )
-            
-            pdf.save()
-            
-            messages.success(request, "File uploaded successfully")
+        print(application)
+    except Exception as e:
+        try:
+            application = application = get_object_or_404(Leave_Application, employee_id = employee_id, nature_of_leave = "DL")
+        except:
+            messages.error(request, "You have not applied for a leave")
+            print("blaaaaaaaaah")
             return redirect('profile')
-        else:
-            return HttpResponseBadRequest("File upload failed: 'pdffile' not found in request.")
-    return render(request, 'staff/upload.html')
+    nature_of_leave = application.nature_of_leave
+    if nature_of_leave == 'ML':
+
+        if request.method == 'POST':
+
+            if 'pdffile' in request.FILES:
+            
+                uploaded_file = request.FILES['pdffile']
+                
+                print(employee_id)
+                pdf = Medical_Certificate_Pdf(
+
+                            pdffile=uploaded_file, 
+                            employee_id = employee_id, 
+                            leave_from = formatted_date
+                           # nature_of_leave = nature_of_leave
+                        )
+                pdf.save()
+                messages.success(request, "File uploaded successfully")
+                return redirect('profile')
+            else:
+                return HttpResponseBadRequest("File upload failed: 'pdffile ML' not found in request.")
+    if nature_of_leave == 'DL':
+        if request.method == 'POST':
+            if 'pdffile' in request.FILES:
+            
+                uploaded_file = request.FILES['pdffile']
+
+                print(employee_id)
+                pdf = Duty_Leave_Certificate_Pdf(
+
+                            pdffile=uploaded_file, 
+                            employee_id = employee_id, 
+                            #leave_from = formatted_date
+                           # nature_of_leave = nature_of_leave
+                        )
+                pdf.save()
+                messages.success(request, "File uploaded successfully")
+                return redirect('profile')
+            else:
+                return HttpResponseBadRequest("File upload failed: 'pdffile DL' not found in request.")
+    
+    return render(request, 'staff/upload.html',{'application': application_date})
 

@@ -65,8 +65,3 @@ class Status_Leave_Application(models.Model):
     status_of_request = models.CharField(max_length=10, default="")
     time_of_request = models.DateTimeField(null=True)
 
-class Pdf(models.Model):
-    employee_id = models.CharField(max_length=10, null = True)
-    nature_of_leave = models.CharField(max_length=10,null = True)
-    leave_id = models.IntegerField(null = True)
-    pdffile = models.FileField(upload_to='media/')
