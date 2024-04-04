@@ -20,5 +20,6 @@ urlpatterns = [
     path('view_requests_hr',views.view_requests_hr, name ='view_requests_hr'),
     path('leave_approval_hr',views.leave_approval_hr, name = 'leave_approval_hr'),
     path('reject_leave_hr',views.reject_leave_hr,name='reject_leave_hr'),
+    path('serve_pdf_medical', views.serve_pdf_medical, name='serve_pdf_medical'),
     path('serve_pdf', views.serve_pdf, name='serve_pdf'),
 ]

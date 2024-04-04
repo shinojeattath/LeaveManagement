@@ -145,4 +145,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Define the URL prefix for serving uploaded files
 MEDIA_URL = '/media/'
-

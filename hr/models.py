@@ -15,3 +15,18 @@ class Leave_Application_hr(models.Model):
     alt_linways_assigned = models.CharField(max_length=5, null=True)
     submitted = models.BooleanField(default=False)
     certificate = models.FileField(upload_to='media/')
+
+class Medical_Certificate_Pdf(models.Model):
+        employee_id = models.CharField(max_length=10, null = True)
+        nature_of_leave = models.CharField(max_length=10,null = True)
+        leave_id = models.IntegerField(null = True)
+        pdffile = models.FileField(upload_to='medicalLeave/')
+        leave_from = models.DateField(null = True)
+
+class Duty_Leave_Certificate_Pdf(models.Model):
+        employee_id = models.CharField(max_length=10, null = True)
+        nature_of_leave = models.CharField(max_length=10,null = True)
+        leave_id = models.IntegerField(null = True)
+        pdffile = models.FileField(upload_to='dutyLeave/')
+        leave_from = models.DateField(null = True)
+        

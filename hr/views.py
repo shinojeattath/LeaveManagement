@@ -9,6 +9,7 @@ from staff.models import Staff_Details, Leave_Application, Status_Leave_Applicat
 from django.core.serializers import serialize
 from .models import Leave_Application_hr
 from staff.models import *
+from .models import *
 # Create your views here.
 def hr_login(request):
     if request.method == "POST":
@@ -223,10 +224,30 @@ def reject_leave_hr(request):
     arrangements.delete()
     return redirect('leave_request_hr')
 
+def serve_pdf_medical(request):
+    employee_id = request.session.get("staff_employee_id")
+    try:
+        pdf = get_object_or_404(Medical_Certificate_Pdf, employee_id = employee_id)
+    except Exception as e:
+        messages.error(request, "No Requested leaves left")
+        return redirect('view_request_hr')
+    
+    
+    # Assuming the PDF file is stored in a FileField named 'pdf_field'
+    pdf_file = pdf.pdffile
+    
+    # Set the appropriate content type for PDF files
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    
+    # Set Content-Disposition header to specify 'inline' to open in browser
+    response['Content-Disposition'] = 'inline; filename="your_pdf_filename.pdf"'
+    
+    return response
+
 def serve_pdf(request):
     employee_id = request.session.get("staff_employee_id")
     try:
-        pdf = get_object_or_404(Pdf, employee_id = employee_id)
+        pdf = get_object_or_404(Duty_Leave_Certificate_Pdf, employee_id = employee_id)
     except Exception as e:
         messages.error(request, "No Requested leaves left")
         return redirect('view_request_hr')

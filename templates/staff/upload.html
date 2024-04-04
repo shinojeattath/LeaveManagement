@@ -33,6 +33,18 @@
             <form method="post" enctype="multipart/form-data" id="uploadForm">
                 {% csrf_token %}
                 <div class="inputBx">
+                    
+                <div class="select-box">
+                    <select name="leave_from" required="">
+                        <option value="">Select Date</option>
+                        {% for i in application %}
+                        <option value="{{i.leave_from}}">{{i.leave_from}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+
                     <input type="file" name="pdffile" id="file-upload" class="file-upload" accept="application/pdf">
                     <label for="file-upload">Choose File</label>
                 </div>
@@ -43,7 +55,7 @@
         </div>
     </div>
     <div class="info-text">
-        The uploaded file must be in .pdf format.
+        Upload file in .pdf format.
    </div>
    <div id="loading-animation" class="loading-animation">
         <img src="{% static 'loadin.gif' %}" alt="Loading..." />
