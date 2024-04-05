@@ -5,3 +5,4 @@ venv/
 *.pyd
 db.sqlite3
 .vscode/
+*.pdf
