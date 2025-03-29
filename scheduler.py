@@ -6,3 +6,5 @@ yearly.main()
 
 # Execute the newStaffUpdate program
 newStaffUpdate.main()
+
+a = 1

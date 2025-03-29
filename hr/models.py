@@ -10,7 +10,7 @@ class Leave_Application_hr(models.Model):
     no_of_days = models.IntegerField(null = True)
     leave_from = models.DateField(null = False)
     reason = models.CharField(max_length=200)
-    status_of_request = models.CharField(max_length=10, default="PENDING")
+    status_of_request = models.CharField(max_length=100, default="PENDING")
     time_of_request = models.DateTimeField(null=True)
     alt_linways_assigned = models.CharField(max_length=5, null=True)
     submitted = models.BooleanField(default=False)

@@ -320,8 +320,10 @@ def upload(request):
                 pdf = Medical_Certificate_Pdf(
 
                             pdffile=uploaded_file, 
-                            employee_id = employee_id, 
-                            leave_from = formatted_date
+                            employee_id = employee_id,
+                            nature_of_leave = 'ML',
+                            leave_id = application.id
+                           # leave_from = formatted_date
                            # nature_of_leave = nature_of_leave
                         )
                 pdf.save()
@@ -340,6 +342,7 @@ def upload(request):
 
                             pdffile=uploaded_file, 
                             employee_id = employee_id, 
+                            nature_of_leave = 'DL'
                             #leave_from = formatted_date
                            # nature_of_leave = nature_of_leave
                         )

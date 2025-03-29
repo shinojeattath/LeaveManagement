@@ -62,6 +62,6 @@ class Status_Leave_Application(models.Model):
     #alt_subject = models.CharField(max_length=30, null = True)
     #alt_assigned_teacher = models.CharField(max_length=20)
     #alt_linways_assigned = models.CharField(max_length=5, null = True)
-    status_of_request = models.CharField(max_length=10, default="")
+    status_of_request = models.CharField(max_length=100, default="")
     time_of_request = models.DateTimeField(null=True)
 
